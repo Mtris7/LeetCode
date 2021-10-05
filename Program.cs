@@ -9,7 +9,6 @@ namespace LeetCode
         {
             int[] nums = new int[] { 1,3,4 };
             Console.WriteLine("Hello World!");
-            Subsets(nums);
             Console.ReadKey();
         }
         
