@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LeetCode_L3
 {
@@ -8,6 +9,7 @@ namespace LeetCode_L3
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.ReadKey();
         }
         //merge-sorted-array
         public void Merge(int[] nums1, int m, int[] nums2, int n)
@@ -48,8 +50,6 @@ namespace LeetCode_L3
             }
         }
 
-
-
         //kth-largest-element-in-an-array
         public int FindKthLargest(int[] nums, int k)
         {
@@ -57,6 +57,11 @@ namespace LeetCode_L3
             Array.Sort(nums);
             return nums[nums.Length - k];
         }
+
+        //k-closest-points-to-origin
+        public int[][] KClosest(int[][] points, int k)
+        => points.OrderBy(p => p[0] * p[0] + p[1] * p[1]).Take(k).ToArray();
+
         //remove-all-adjacent-duplicates-in-string
         public string RemoveDuplicates(string s)
         {
@@ -82,7 +87,7 @@ namespace LeetCode_L3
             return result;
         }
         //valid-parentheses
-        public static bool IsValid(string s)
+        public bool IsValid(string s)
         {
             Stack<string> parentheses = new Stack<string>();
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
