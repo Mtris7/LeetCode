@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LeetCode_L2
 {
@@ -9,6 +10,94 @@ namespace LeetCode_L2
             Console.WriteLine("Hello World!");
         }
 
+        public int RemoveElement(int[] nums, int val)
+        {
+            /* i have a worst solution : we just create to loop 
+             * 1, int i = 0 -> n and j : n -> 0 swap if nums[i] == val
+             * after thinking some minute , i think i use 1 loop
+             *  create first and last index in array
+             *  swap i if nums[i] == val and decrease n 
+             *  return n
+             */
+            int i = 0;
+            int n = nums.Length;
+            while (i < n)
+            {
+                if (nums[i] == val)
+                {
+                    nums[i] = nums[n - 1];
+                    n--;
+                }
+                else
+                    i++;
+            }
+            return n;
+        }
+        public int RemoveDuplicates(int[] nums)
+        {
+            /* [0,0,1,1,1,2,2,3,3,4] remove duplicate
+             * i think we should create count to count the number of the time number repeat
+             * pivot : index change when value is distinct
+             * create a list save values is distince for compare
+             * loop i = 0 -> n and check duplicate
+             * 
+             */
+            if (nums.Length == 0) return 0;
+            int count = 1;
+            int pivot = 1;
+            List<int> list = new List<int>();
+            list.Add(nums[0]);
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (list.Contains(nums[i])) continue;
+                else list.Add(nums[i]);
+                nums[pivot] = nums[i];
+                pivot++;
+                count++;
+            }
+            return count;
+        }
+        public string LongestCommonPrefix(string[] strs)
+        {
+            /* Longest Common Prefix
+             * first : we create prefix with index = 0 in array
+             * second : check index of prefix in array from index 1-> max
+             * if not in : decrease prefix 1 char
+             * example: ["flower","flow","flight"]
+             * prefix = flower => check flow with flower => not in : prefix = flowe
+             * not in againt we decrease prefix 1 last char: prefix = flow
+             * now, we have two case : 1 , it have : return prefix or empty : return it 
+             */
+            if (strs.Length < 2) return strs[strs.Length - 1];
+
+            string prefix = strs[0];
+            for (int i = 1; i < strs.Length; i++)
+            {
+                while (strs[i].IndexOf(prefix) != 0)
+                {
+                    prefix = prefix.Substring(0, prefix.Length - 1);
+                    if (prefix == "") return "";
+                }
+            }
+            return prefix;
+
+        }
+        //------------------
+        //public int SubarraySum(int[] nums, int k)
+        //{
+        //    int sum = 0;
+        //    int count = 0;
+        //    Dictionary<int, int> dic = new Dictionary<int, int>();
+        //    dic.Add(0, 1);
+        //    for (int i = 0; i < nums.Length; i++)
+        //    {
+        //        sum += nums[i];
+        //        if (dic.ContainsKey(sum - k))
+        //            count += dic[sum - k];
+        //        dic.Add(sum, 1);
+        //    }
+        //    return count;
+        //}
         public int SubarraySum(int[] nums, int k)
         {
             /*
