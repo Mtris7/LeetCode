@@ -10,6 +10,43 @@ namespace LeetCode_L2
             Console.WriteLine("Hello World!");
         }
 
+        //search-insert-position
+        public int SearchInsert(int[] nums, int target)
+        {
+            if (nums.Length == 0) return 0;
+            int i = nums.Length / 2;
+            int indexTarget = i;
+            if (nums[i] < target)
+            {
+                int[] nums1 = new int[nums.Length / 2];
+                int index = 0;
+                for (int j = i; j < nums.Length; j++)
+                {
+                    nums1[index] = nums[j];
+                    index++;
+                }
+                indexTarget += i + SearchInsert(nums1, target);
+            }
+            else if (nums[i] > target)
+            {
+                int[] nums1 = new int[nums.Length / 2];
+                int index = 0;
+                for (int j = 0; j < i - 1; j++)
+                {
+                    nums1[index] = nums[j];
+                    index++;
+                }
+                indexTarget -= (i + SearchInsert(nums1, target));
+            }
+            return indexTarget;
+
+        }
+        //Implement strStr()
+        public int StrStr(string haystack, string needle)
+        {
+            if (needle == "") return 0;
+            return haystack.IndexOf(needle);
+        }
         public int RemoveElement(int[] nums, int val)
         {
             /* i have a worst solution : we just create to loop 
