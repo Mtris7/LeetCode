@@ -11,6 +11,62 @@ namespace LeetCode_L3
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
+        //roman-to-integer
+        public int RomanToInt(string s)
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+            dic.Add("I", 1);
+            dic.Add("V", 5);
+            dic.Add("X", 10);
+            dic.Add("L", 50);
+            dic.Add("C", 100);
+            dic.Add("D", 500);
+            dic.Add("M", 1000);
+            int result = 0;
+            string firstChar = "";
+            while (s.Length > 0)
+            {
+                string charString = s.Substring(0, 1);
+                if (firstChar == "I" && (charString == "V" || charString == "X"))
+                {
+                    result += dic[charString] - dic[firstChar];
+                    firstChar = "";
+                    s = s.Substring(1);
+                    continue;
+                }
+                else if (firstChar == "X" && (charString == "L" || charString == "C"))
+                {
+                    result += dic[charString] - dic[firstChar];
+                    firstChar = "";
+                    s = s.Substring(1);
+                    continue;
+                }
+                else if (firstChar == "C" && (charString == "D" || charString == "M"))
+                {
+                    result += dic[charString] - dic[firstChar];
+                    firstChar = "";
+                    s = s.Substring(1);
+                    continue;
+                }
+
+                if ((charString == "I" || charString == "X" || charString == "C") && s.Length > 1)
+                {
+                    if (firstChar != "") result += dic[firstChar];
+                    firstChar = charString;
+                    s = s.Substring(1);
+                    continue;
+                }
+                if (firstChar != "")
+                {
+                    result += dic[firstChar];
+                    firstChar = "";
+                }
+                s = s.Substring(1);
+                result += dic[charString];
+            }
+            return result;
+        }
+
         //merge-sorted-array
         public void Merge(int[] nums1, int m, int[] nums2, int n)
         {
