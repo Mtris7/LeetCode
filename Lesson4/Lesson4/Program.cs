@@ -17,7 +17,6 @@ namespace Lesson4
             //387. First Unique Character in a String
             //1748. Sum of Unique Elements
 
-            FirstUniqChar("leetcode");
             Console.WriteLine("Hello World!");
         }
         //217. Contains Duplicate
@@ -121,7 +120,7 @@ namespace Lesson4
         }
 
         //387. First Unique Character in a String
-        public static int FirstUniqChar(string s)
+        public int FirstUniqChar(string s)
         {
             /* create hashtable and save value of array is a key of hashtable , value is index of array
              * if hashtable have a value  => save index in hashtable = -1
@@ -204,6 +203,36 @@ namespace Lesson4
             }
 
             return i;
+        }
+
+        //781. Rabbits in Forest
+        public int NumRabbits(int[] answers)
+        {
+            /* create hashtable to save key is value of array and value is a number of occurrences (1 : default)
+             * loop : from i to n  : compare value of array and key : if exist :  increase value by 1 
+             *  second compare : value in hashtable and value of array + 1 => if hashtable[value] > array[value] => remove hashtable
+             *  because : we have enough of the rappit with same color : 
+             *  example : [0,0,1,1,1] : rabbit at index 0 : it not have any rabbit has color like it : so we need to remove value of hashtable
+             */
+            var dic = new Dictionary<int, int>();
+            int you = 1;
+            int sum = 0;
+            for (int i = 0; i < answers.Length; i++)
+            {
+                if (!dic.ContainsKey(answers[i]))
+                {
+                    dic.Add(answers[i], 1);
+                    sum += answers[i] + you;
+                }
+                else
+                    dic[answers[i]]++;
+                if (dic[answers[i]] >= you + answers[i])
+                    dic.Remove(answers[i]);
+
+
+            }
+            return sum;
+
         }
     }
 }
