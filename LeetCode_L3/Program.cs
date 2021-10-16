@@ -8,8 +8,74 @@ namespace LeetCode_L3
     {
         static void Main(string[] args)
         {
+            string s = "(1+(4+5+2)-3)+(6+8)";
+            List<int> list = new List<int>();
+            list.Add(3);
+            int a = list.Last();
+            if (s.Contains('('))
+            {
+                int k = s.IndexOf('(');
+                string b = s.Substring(k + 1);
+
+            }
             Console.WriteLine("Hello World!");
             Console.ReadKey();
+        }
+
+        /*basic-calculator-ii
+         * using stack : add number if cal * or / we cal first to add stack
+         * 
+         */
+        Stack<int> stack = new Stack<int>();
+        string caseCal = "";
+        public int Calculate(string s)
+        {
+            int number = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == ' ') continue;
+                if (s[i] != '+' && s[i] != '-' && s[i] != '*' && s[i] != '/')
+                    number = Convert.ToInt32(number + s[i].ToString());
+                else
+                {
+                    if (caseCal != "")
+                        SetStack(number);
+                    else stack.Push(number);
+                    number = 0;
+                    caseCal = s[i].ToString();
+                }
+            }
+            if (number != 0) SetStack(number);
+            int result = 0;
+            while (stack.Count > 0)
+            {
+                result += stack.Peek();
+                stack.Pop();
+            }
+            return result;
+        }
+        private void SetStack(int value)
+        {
+            int number = value;
+            int total = 0;
+            if (caseCal == "-") number = -number;
+            else if (caseCal == "*")
+            {
+                total = number * stack.Peek();
+                stack.Pop();
+                stack.Push(total);
+                return;
+            }
+            else if (caseCal == "/")
+            {
+                total = stack.Peek() / number;
+                stack.Pop();
+                stack.Push(total);
+                return;
+            }
+
+            stack.Push(number);
+            number = 0;
         }
         //roman-to-integer
         public int RomanToInt(string s)
