@@ -16,9 +16,175 @@ namespace Lesson4
             //974. Subarray Sums Divisible by K
             //387. First Unique Character in a String
             //1748. Sum of Unique Elements
-
+            FindPairs(new int[] { 3, 1, 4, 1, 5 }, 2);
             Console.WriteLine("Hello World!");
         }
+        //532. K-diff Pairs in an Array
+        public static int FindPairs(int[] nums, int k)
+        {
+            var dic = new Dictionary<int, int>();
+            int count = 0;
+            for (int i = 0; i < nums.Length - 1; i++)
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (Math.Abs(nums[i] - nums[j]) == k && (!dic.ContainsKey(nums[i]) || dic[nums[i]] != nums[j]))
+                    {
+                        dic.Add(nums[i], nums[j]);
+                        count++;
+                    }
+                }
+            return count;
+        }
+
+        //2023. Number of Pairs of Strings With Concatenation Equal to Target
+        public int NumOfPairs(string[] nums, string target)
+        {
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+                for (int j = 0; j < nums.Length; j++)
+                    if (i != j && nums[i] + nums[j] == target)
+                        count++;
+            return count;
+        }
+        //1679. Max Number of K-Sum Pairs
+        public int MaxOperations(int[] nums, int k)
+        {
+            /* You are given an integer array nums and an integer k.
+
+                In one operation, you can pick two numbers from the array whose sum equals k and remove them from the array.
+
+                Return the maximum number of operations you can perform on the array.
+
+                
+             * create hashtable to save value of nums is a key and number of occurrences is a value
+             * compare dic with sub ( value of num and K ) if it has :  decrease number of occurrences in hashtable or remove it
+             *                                                             and increase count to 1, and go to next loop
+             *                                             if not we add key value or increase number of occurrences 
+             */
+            var dic = new Dictionary<int, int>();
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var sub = k - nums[i];
+                if (dic.ContainsKey(sub))
+                {
+                    if (dic[sub] > 1)
+                        dic[sub]--;
+                    else
+                        dic.Remove(sub);
+                    count++;
+                    continue;
+                }
+
+
+                if (dic.ContainsKey(nums[i]))
+                    dic[nums[i]]++;
+                else
+                    dic.Add(nums[i], 1);
+            }
+            return count;
+        }
+        //2006. Count Number of Pairs With Absolute Difference K
+        public int CountKDifference(int[] nums, int k)
+        {
+            int result = 0;
+            for (int i = 0; i < nums.Length - 1; i++)
+                for (int j = i+1; j < nums.Length; j++)
+                {
+                    if (Math.Abs(nums[i] - nums[j]) == k)
+                        result++;
+                }
+            return result;
+        }
+        //167. Two Sum II - Input array is sorted
+        public int[] TwoSum2(int[] numbers, int target)
+        {
+            var dic = new Dictionary<int, int>();
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (dic.ContainsValue(target - numbers[i]))
+                {
+                    return new int[] { dic.First(x => x.Value == (target - numbers[i])).Key, i + 1 };
+                }
+                else
+                    dic.Add(i + 1, numbers[i]);
+
+            }
+            return new int[] { };
+        }
+        //1047. Remove All Adjacent Duplicates In String
+        public string RemoveDuplicates(string s)
+        {
+            Stack<char> stackChar = new Stack<char>();
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (stackChar.Peek() == s[i])
+                {
+                    stackChar.Pop();
+                    continue;
+                }
+                stackChar.Push(s[i]);
+            }
+            string result = "";
+            while (stackChar.Count > 0)
+            {
+                result = stackChar.Peek() + result;
+                stackChar.Pop();
+            }
+            return result;
+        }
+        public static bool judgeSquareSum(int c)
+        {
+            for (long a = 0; a * a <= c; a++)
+            {
+                int b = c - (int)(a * a);
+                if (binary_search(0, b, b))
+                    return true;
+            }
+            return false;
+        }
+        public static bool binary_search(long s, long e, int n)
+        {
+            if (s > e)
+                return false;
+            long mid = s + (e - s) / 2;
+            if (mid * mid == n)
+                return true;
+            if (mid * mid > n)
+                return binary_search(s, mid - 1, n);
+            return binary_search(mid + 1, e, n);
+        }
+        //3. Longest Substring Without Repeating Characters
+        //public static int LengthOfLongestSubstring(string s)
+        //{
+        //    int result = 0;
+        //    int maxLength = 0;
+        //    int count = 0;
+        //    var dic = new Dictionary<char, int>();
+        //    for (int i = 0; i < s.Length; i++)
+        //    {
+        //        if (!dic.ContainsKey(s[i]))
+        //        {
+        //            dic.Add(s[i], i + 1);
+        //            maxLength++;
+        //            if (result < maxLength)
+        //                result = maxLength;
+        //        }
+        //        else
+        //        {
+        //            maxLength++;
+        //            maxLength = maxLength - dic[s[i]] + count; //bbtablud"
+        //            foreach (var item in dic.Where(x => x.Value < dic[s[i]]))
+        //            {
+        //                dic.Remove(item.Key);
+        //                count++;
+        //            }
+        //            count++;
+        //            dic[s[i]] = i + 1;
+        //        }
+        //    }
+        //    return result;
+        //}
         //217. Contains Duplicate
         public bool ContainsDuplicate(int[] nums)
         {
@@ -251,6 +417,67 @@ namespace Lesson4
             }
             return sum;
 
+        }
+
+        //69. Sqrt(x)
+        public int MySqrt(int x)
+        {
+            if (x == 1) return x;
+            int result = 0;
+            int dump = 0;
+            for (int i = dump; i <= x / 2; i++)
+            {
+                dump = i * i;
+                if (dump == x) return i;
+                else if (dump < 0) break;
+                else if (dump < x)
+                    result = i;
+            }
+            return result;
+        }
+
+        //367. Valid Perfect Square
+        public bool IsPerfectSquare(int num)
+        {
+            if (num == 1) return true;
+            int dump = 0;
+            for (int i = dump; i <= num / 2; i++)
+            {
+                dump = i * i;
+                if (dump == num) return true;
+                else if (dump < 0) break;
+            }
+            return false;
+        }
+        //633. Sum of Square Numbers
+
+        public bool JudgeSquareSum(int c)
+        {
+            c= 1000;
+            if (c == 1) return true;
+            int dump = 0;
+            int a = 0;
+            for (int i = dump; i <= c / 2; i++)
+            {
+                dump = i * i;
+                if (dump == c) return true;
+                else if (dump < 0 || dump > c) break;
+                a = i;
+            }
+            dump = 0;
+            int rest = c - a * a;
+            if (rest == 1) return true;
+            for (int i = dump; i <= rest / 2; i++)
+            {
+                dump = i * i;
+                if (dump == rest) return true;
+            }
+            /*
+            1 + 2 = 5
+            3 + 2 = 13 = 9 + 3
+
+            */
+            return false;
         }
     }
 }
