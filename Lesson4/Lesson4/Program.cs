@@ -16,24 +16,57 @@ namespace Lesson4
             //974. Subarray Sums Divisible by K
             //387. First Unique Character in a String
             //1748. Sum of Unique Elements
-            FindPairs(new int[] { 3, 1, 4, 1, 5 }, 2);
+            ListNode head = new ListNode();
+            var current = head;
+            current.next = new ListNode(1);
+            current = current.next;
+            current.next = new ListNode(2);
+            //current = current.next;
+            //current.next = new ListNode(3);
+            //current = current.next;
+            //current.next = new ListNode(2);
+            //current = current.next;
+            //current.next = new ListNode(1);
+            //current = current.next;
+            //current.next = new ListNode(3);
+            //current = current.next;
+            //current.next = new ListNode(1);
+            //current = current.next;
+            //current.next = new ListNode(2);
+            //current = current.next;
+            //current.next = new ListNode(3);
+            //current = current.next;
+            //current.next = new ListNode(2);
+            //current = current.next;
+            //current.next = new ListNode(1);//[1,2,3,2,1,3,1,2,3,2,1]
+            Solution.GetMid(head.next);
             Console.WriteLine("Hello World!");
         }
         //532. K-diff Pairs in an Array
         public static int FindPairs(int[] nums, int k)
         {
-            var dic = new Dictionary<int, int>();
-            int count = 0;
-            for (int i = 0; i < nums.Length - 1; i++)
-                for (int j = i + 1; j < nums.Length; j++)
+            if (k < 0)
+                return 0;
+
+            int result = 0;
+            System.Collections.Hashtable hash = new System.Collections.Hashtable();
+
+            foreach (var item in nums)
+                if (!hash.ContainsKey(item))
+                    hash.Add(item, 1);
+                else
+                    hash[item] = (int)hash[item] + 1;
+
+            foreach (var item in hash.Keys)
+                if (k == 0)
                 {
-                    if (Math.Abs(nums[i] - nums[j]) == k && (!dic.ContainsKey(nums[i]) || dic[nums[i]] != nums[j]))
-                    {
-                        dic.Add(nums[i], nums[j]);
-                        count++;
-                    }
+                    if ((int)hash[item] > 1)
+                        result++;
                 }
-            return count;
+                else if (hash.ContainsKey((int)item + k))
+                    result++;
+
+            return result;
         }
 
         //2023. Number of Pairs of Strings With Concatenation Equal to Target
