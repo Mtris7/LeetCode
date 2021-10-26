@@ -31,17 +31,22 @@ namespace lesson7_Graph
 
             //how to test treeNode
             //root = [0,2,4,1,null,3,-1,5,1,null,6,null,8]
-            //var root = new TreeNode(0);
-            //var cur = root;
-            //cur.left = new TreeNode(2);
-            //cur.right = new TreeNode(4);
-            //cur = cur.left;
-            //cur.left = new TreeNode(1);
-            //cur = root.right;
-            //cur.left = new TreeNode(3);
-            //cur.right = new TreeNode(-1);
+            //root = [-9,-3,2,null,4,4,0,-6,null,-5]
+            var root = new TreeNode(-9);
+            var cur = root;
+            cur.left = new TreeNode(-3);
+            cur.right = new TreeNode(2);
+            cur = cur.left;
+            cur.right = new TreeNode(4);
+            cur = cur.right;
+            cur.left = new TreeNode(-6);
+            cur = root.right;
+            cur.left = new TreeNode(4);
+            cur.right = new TreeNode(0);
+            cur = cur.left;
+            cur.left = new TreeNode(-5);
             //Solution.SumOfLeftLeaves(root);
-
+            //Solution.MinDepth(root);
 
             Console.WriteLine("Hello World!");
             //Solution
@@ -50,6 +55,9 @@ namespace lesson7_Graph
             //841. Keys and Rooms
             //547. Number of Provinces
             //404.Sum of Left Leaves
+            // 111. Minimum Depth of Binary Tree
+            //104. Maximum Depth of Binary Tree
+            //543. Diameter of Binary Tree
         }
 
         //###########################################################################################################

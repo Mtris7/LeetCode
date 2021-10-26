@@ -18,34 +18,62 @@ namespace lesson7_Graph
     }
     public class Solution
     {
-        //
-        int count = 1;
-        public int MinDepth(TreeNode root)
+        //########################################################################################
+        //########################################################################################
+        //########################################################################################
+        /// <summary>
+        /// 543. Diameter of Binary Tree
+        /// </summary>
+        private int res = 0;
+        public int DiameterOfBinaryTree(TreeNode root)
+        {
+            DFSMaxLength(root);
+
+            return res;
+        }
+        int DFSMaxLength(TreeNode root)
         {
             if (root == null) return 0;
-            if (root.left == null && root.right == null) return 1;
-            int leftSum = DFS(root.left);
-            count = 1;
-            int rightSum = DFS(root.right);
-            if (leftSum < rightSum)
-                return leftSum;
-            else
-                return rightSum;
+
+            int lMax = DFSMaxLength(root.left);
+            int rMax = DFSMaxLength(root.right);
+
+            res = Math.Max(lMax + rMax, res);
+
+            return Math.Max(lMax, rMax) + 1;
         }
-        int DFS(TreeNode root)
+        //########################################################################################
+        /// <summary>
+        /// 104. Maximum Depth of Binary Tree
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MaxDepth(TreeNode root)
         {
-            if (root == null) return count;
-            count++;
-            if (root.left == null && root.right == null)
-                return count;
-
-            int leftSum = DFS(root.left);
-
-            int rightSum = DFS(root.right);
-            if (leftSum < rightSum)
-                return leftSum;
+            if (root == null) return 0;
+            if (root.left == null)
+                return MaxDepth(root.right) + 1;
+            else if (root.right == null)
+                return MaxDepth(root.left) + 1;
             else
-                return rightSum;
+                return Math.Max(MaxDepth(root.right), MaxDepth(root.left)) + 1;
+        }
+        //########################################################################################
+        /// <summary>
+        /// 111. Minimum Depth of Binary Tree
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MinDepth(TreeNode root)
+        {
+            if (root == null)
+                return 0;
+            else if (root.left == null)
+                return MinDepth(root.right) + 1;
+            else if (root.right == null)
+                return MinDepth(root.left) + 1;
+            else
+                return Math.Min(MinDepth(root.left), MinDepth(root.right)) + 1;
         }
         //########################################################################################
         /// <summary>
