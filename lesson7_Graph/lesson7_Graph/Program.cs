@@ -32,22 +32,22 @@ namespace lesson7_Graph
             //how to test treeNode
             //root = [0,2,4,1,null,3,-1,5,1,null,6,null,8]
             //root = [-9,-3,2,null,4,4,0,-6,null,-5]
-            var root = new TreeNode(-9);
+            var root = new TreeNode(1);
             var cur = root;
-            cur.left = new TreeNode(-3);
-            cur.right = new TreeNode(2);
+            cur.left = new TreeNode(2);
+            cur.right = new TreeNode(3);
             cur = cur.left;
             cur.right = new TreeNode(4);
             cur = cur.right;
-            cur.left = new TreeNode(-6);
-            cur = root.right;
-            cur.left = new TreeNode(4);
-            cur.right = new TreeNode(0);
+            cur.left = new TreeNode(5);
+            cur.right = new TreeNode(6);
             cur = cur.left;
-            cur.left = new TreeNode(-5);
+            cur.right = new TreeNode(7);
             //Solution.SumOfLeftLeaves(root);
-            //Solution.MinDepth(root);
-
+            //[1,1,1,null,1,null,null,1,1,null,1]
+            //Solution.LongestZigZag(root);
+            //Solution.SumOfLeftLeaves(root);
+            Solution.Rob(root);
             Console.WriteLine("Hello World!");
             //Solution
             //695. Max Area of Island
@@ -58,6 +58,12 @@ namespace lesson7_Graph
             // 111. Minimum Depth of Binary Tree
             //104. Maximum Depth of Binary Tree
             //543. Diameter of Binary Tree
+            //687. Longest Univalue Path
+            //1372. Longest ZigZag Path in a Binary Tree
+            //144. Binary Tree Preorder Traversal
+            //94. Binary Tree Inorder Traversal
+            //145. Binary Tree Postorder Traversal
+            //337.House Robber III
         }
 
         //###########################################################################################################
