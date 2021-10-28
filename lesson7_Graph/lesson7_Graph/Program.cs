@@ -47,7 +47,7 @@ namespace lesson7_Graph
             //[1,1,1,null,1,null,null,1,1,null,1]
             //Solution.LongestZigZag(root);
             //Solution.SumOfLeftLeaves(root);
-            Solution.Rob(root);
+            //Solution.Rob(root);
             Console.WriteLine("Hello World!");
             //Solution
             //695. Max Area of Island
@@ -64,8 +64,29 @@ namespace lesson7_Graph
             //94. Binary Tree Inorder Traversal
             //145. Binary Tree Postorder Traversal
             //337.House Robber III
+            //589. N-ary Tree Preorder Traversal
         }
 
+        //###########################################################################################################
+        //589. N-ary Tree Preorder Traversal
+        List<int> list = new List<int>();
+        public IList<int> Preorder(Node root)
+        {
+            DFS(root);
+            return list;
+        }
+        void DFS(Node root)
+        {
+            if (root == null) return;
+            list.Add(root.val);
+            foreach (var item in root.children)
+            {
+                if (item.children != null)
+                    DFS(item);
+
+                else list.Add(item.val);
+            }
+        }
         //###########################################################################################################
         //695. Max Area of Island
         private int count = 0;
