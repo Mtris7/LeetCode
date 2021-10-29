@@ -15,8 +15,13 @@ namespace Lesson8_BFS
             children = new Node(4);
             list.Add(children);
             var root = new Node(1, list);
-
-            //LevelOrder(root);
+            //[[0,0,0],[1,1,0],[1,1,0]]
+            //[[0,0,0],[1,1,0],[1,1,1]]
+            var grid = new int[1][] { new int[1] { 0 }};
+            //
+            ///
+            //
+            MinMutation("AACCGGTT", "AAACGGTA", new string[] { "AACCGGTA", "AACCGCTA", "AAACGGTA" });
             //429.N - ary Tree Level Order Traversal
             //102. Binary Tree Level Order Traversal
             //107. Binary Tree Level Order Traversal II
@@ -24,6 +29,7 @@ namespace Lesson8_BFS
             //1302. Deepest Leaves Sum
             //199.Binary Tree Right Side View
             //1091. Shortest Path in Binary Matrix
+            //433. Minimum Genetic Mutation
             Console.WriteLine("Hello World!");
         }
         //#########################################################################################################
@@ -31,9 +37,56 @@ namespace Lesson8_BFS
         //#########################################################################################################
         //#########################################################################################################
         //#########################################################################################################
-        //#########################################################################################################
-        //https://leetcode.com/problems/shortest-path-in-binary-matrix/?fbclid=IwAR0v0a9yG3hwm9HozbweLmMzk5Cb3e5lDxl-CGBOIPslogIyzLvoGddxTkA
+        /// <summary>
+        /// 433. Minimum Genetic Mutation
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="bank"></param>
+        /// <returns></returns>
+        public static int MinMutation(string start, string end, string[] bank)
+        {
 
+            if (bank.Length == 0) return -1;
+
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue(start);
+            var currentLevel = new List<string>();
+            currentLevel.Add(start);
+            int result = 0;
+            while (queue.Count != 0)
+            {
+                currentLevel = new List<string>();
+                var currentSize = queue.Count;
+                for (int i = 0; i < currentSize; i++)
+                {
+                    string node = queue.Dequeue();
+                    if (node == end) return result;
+
+                    result++;
+                    for (int n = 0; n < bank.Length; n++)
+                    {
+                        int count = 0;
+                        for (int m = 0; m < node.Length; m++)
+                        {
+                            if (bank[n][m] == node[m]) continue;
+
+                            count++;
+
+                        }
+                        if (count == 1) //("AACCGGTT", "AAACGGTA", new string[] { "AACCGGTA", "AACCGCTA", "AAACGGTA" });
+                        {
+                            currentLevel.Add(bank[n]);
+                            queue.Enqueue(bank[n]);
+                        }
+                    }
+
+                }
+
+            }
+            return -1;
+        }
+        //#########################################################################################################
         /// <summary>
         /// //1091. Shortest Path in Binary Matrix
         /// </summary>
@@ -41,7 +94,41 @@ namespace Lesson8_BFS
         /// <returns></returns>
         public int ShortestPathBinaryMatrix(int[][] grid)
         {
-            return 0;
+            int n = grid.Length;
+            if (grid[0][0] != 0 || grid[n - 1][n - 1] != 0) return -1;
+            int result = 0;
+
+            var queue = new Queue<(int, int)>();
+            queue.Enqueue((0, 0));
+            grid[0][0] = -1;
+
+            var kr = new int[] { 1, -1, 0, 0, 1, -1, 1, -1 };
+            var kc = new int[] { 0, 0, 1, -1, 1, -1, -1, 1 };
+
+            while (queue.Count != 0)
+            {
+                int currentSize = queue.Count;
+                result++;
+                for (int i = 0; i < currentSize; i++)
+                {
+                    var node = queue.Dequeue();
+                    if (node.Item1 == n - 1 && node.Item2 == n - 1)
+                        return result;
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        int r = node.Item1 + kr[j];
+                        int c = node.Item2 + kc[j];
+                        if (r >= 0 && r < n && c >= 0 && c < n && grid[r][c] == 0)
+                        {
+                            queue.Enqueue((r, c));
+                            grid[r][c] = -1;
+                        }
+                    }
+                }
+            }
+
+            return -1;
         }
         //#########################################################################################################
         /// <summary>
