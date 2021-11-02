@@ -21,7 +21,7 @@ namespace Lesson8_BFS
             var grid = new int[1][] { new int[1] { 0 }};
             //MinMutation("AACCGGTT", "AAACGGTA", new string[] { "AACCGGTA", "AACCGCTA", "AAACGGTA" });
             //LadderLength("hit", "cog", new List<string> { "hot", "dot", "dog", "lot", "log", "cog" });
-
+            SlidingPuzzle(new int[2][] { new int[] { 1, 2, 3 }, new int[] { 5, 4, 0 } });
 
             //429.N - ary Tree Level Order Traversal
             //102. Binary Tree Level Order Traversal
@@ -36,6 +36,73 @@ namespace Lesson8_BFS
         //#########################################################################################################
         //#########################################################################################################
         //#########################################################################################################
+        /// <summary>
+        /// 773. Sliding Puzzle
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
+        static HashSet<string> hashSet = new HashSet<string>();
+        static Queue<string> queue = new Queue<string>();
+        static int result = 0;
+        public static int SlidingPuzzle(int[][] board)
+        {
+
+            string s = "";
+            for (int i = 0; i < board.Length; i++)
+                for (int j = 0; j < board[i].Length; j++)
+                    s = s + board[i][j];
+
+            queue.Enqueue(s);
+            hashSet.Add(s);
+            while (queue.Any())
+            {
+                var size = queue.Count;
+                for (int k = 0; k < size; k++)
+                {
+                    var cur = queue.Dequeue();
+                    var intArr = cur.ToArray();
+                    int index0 = cur.IndexOf('0');
+
+                    var index = index0 + 1;
+                    if (isPossible(index0, index, cur, intArr))
+                        return result + 1;
+                    index = index0 - 1;
+                    if (isPossible(index0, index, cur, intArr))
+                        return result + 1;
+                    if (index > 2)
+                    {
+                        if (isPossible(index0, index0 - 3, cur, intArr))
+                            return result + 1;
+                    }
+                    else
+                    {
+                        if (isPossible(index0, index0 + 3, cur, intArr))
+                            return result + 1;
+                    }
+                }
+
+                result++;
+            }
+            return -1;
+        }
+        static bool isPossible(int index0, int index, string cur, char[] intArr)
+        {
+            if (index >= 0 && index < cur.Length)
+            {
+                intArr[index0] = cur[index];
+                intArr[index] = cur[index0];
+                var stringNext = new string(intArr);
+                if (stringNext == "123450") return true;
+                if (!hashSet.Contains(stringNext))
+                {
+                    hashSet.Add(stringNext);
+                    queue.Enqueue(stringNext);
+                }
+                intArr[index0] = cur[index0];
+                intArr[index] = cur[index];
+            }
+            return false;
+        }
         //#########################################################################################################
         /// <summary>
         /// 127. Word Ladder
