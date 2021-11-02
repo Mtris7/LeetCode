@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace lesson9_BinarySearch
 {
@@ -11,9 +12,15 @@ namespace lesson9_BinarySearch
             //33. Search in Rotated Sorted Array
             //153.Find Minimum in Rotated Sorted Array
             //81. Search in Rotated Sorted Array II
+            //1760. Minimum Limit of Balls in a Bag
+
+
             //FindMin(new int[] { 3, 4, 5, 1, 2 } );
             //Search(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 }, 2);//[1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1]
-            //MinimumSize(new int[] { 9}, 3);
+            //MinimumSize(new int[] { 4, 412, 354, 607, 587, 28, 136, 327, 929, 905, 671, 811, 572, 152, 556, 96, 205, 188, 505, 14, 602, 591, 802, 662, 543, 781, 878, 812, 539, 981, 587, 716, 531, 354, 92, 165, 352, 522, 983, 966, 378, 911, 873, 606, 392, 927, 426, 726, 892, 939, 96, 419, 769, 387, 178, 895, 41, 291, 437, 513, 37, 569, 945, 102, 460 }, 33);
+            //[4,412,354,607,587,28,136,327,929,905,671,811,572,152,556,96,205,188,505,14,602,591,802,662,543,781,878,812,539,981,587,716,531,354,92,165,352,522,983,966,378,911,873,606,392,927,426,726,892,939,96,419,769,387,178,895,41,291,437,513,37,569,945,102,460]
+            //33
+            MySqrt(2147395599);
             Console.WriteLine("Hello World!");
         }
         //#####################################################################################
@@ -27,48 +34,34 @@ namespace lesson9_BinarySearch
         /// <returns></returns>
         public int MinimumSize(int[] nums, int maxOperations)
         {
-            int max = int.MinValue;
-            for (int i = 0; i < nums.Length; i++)
-                if (max < nums[i]) max = nums[i];
-            int count = 0;
+            int high = nums.Max();
+            int low = 1;
             int result = int.MaxValue;
-            int temp = max / 2;
-            var list = new List<int>();
-            list.Add(temp);
-            while (true)
+
+            while (low <= high)
             {
-                var arr = new int[nums.Length];
-                for (int i = 0; i < nums.Length; i++)
-                    arr[i] = nums[i];
-
-                for (int i = 0; i < arr.Length; i++)
+                int mid = low + (high - low) / 2;
+                if (IsPossible(nums, mid, maxOperations))
                 {
-                    if (arr[i] > temp)
-                    {
-                        arr[i] -= temp;
-
-                        count++;
-                        i--;
-                        continue;
-                    }
-                }
-                if (count <= maxOperations)
-                {
-                    if (temp < result)
-                        result = temp;
-                    temp--;
+                    high = mid - 1;
+                    result = Math.Min(result, mid);
                 }
                 else
-                {
-                    temp++;
-                    if (list.Contains(temp)) break;
+                    low = mid + 1;
 
-                    list.Add(temp);
-                }
-                count = 0;
-                list.Add(temp);
             }
             return result;
+        }
+        bool IsPossible(int[] nums, int mid, int maxOperations)
+        {
+            int count = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                count += (nums[i] - 1) / mid;
+                if (count > maxOperations)
+                    return false;
+            }
+            return true;
         }
         //#####################################################################################
         /// <summary>
@@ -76,20 +69,25 @@ namespace lesson9_BinarySearch
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public int MySqrt(int x) // Not binary .. need improve
+        public static int MySqrt(int x)
         {
-            if (x == 1) return x;
-            int result = 0;
-            int dump = 0;
-            for (int i = dump; i <= x / 2; i++)
+            if (x == 0 || x == 1) return x;
+            long left = 0;
+            long right = int.MaxValue / 2 + 1;
+            while (left < right)
             {
-                dump = i * i;
-                if (dump == x) return i;
-                else if (dump < 0) break;
-                else if (dump < x)
-                    result = i;
+                long mid = left + (right - left) / 2;
+                long powX = mid * mid;
+                if (powX == x)
+                    return (int)mid;
+                else if (powX > x)
+                    right = mid;
+                else
+                    left = mid + 1;
+
             }
-            return result;
+
+            return (int)left - 1;
         }
         //#####################################################################################
         /// <summary>
