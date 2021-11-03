@@ -21,7 +21,7 @@ namespace Lesson8_BFS
             var grid = new int[1][] { new int[1] { 0 }};
             //MinMutation("AACCGGTT", "AAACGGTA", new string[] { "AACCGGTA", "AACCGCTA", "AAACGGTA" });
             //LadderLength("hit", "cog", new List<string> { "hot", "dot", "dog", "lot", "log", "cog" });
-            SlidingPuzzle(new int[2][] { new int[] { 1, 2, 3 }, new int[] { 5, 4, 0 } });
+            //SlidingPuzzle(new int[2][] { new int[] { 3, 2, 4 }, new int[] { 1, 5, 0 } });
 
             //429.N - ary Tree Level Order Traversal
             //102. Binary Tree Level Order Traversal
@@ -41,10 +41,10 @@ namespace Lesson8_BFS
         /// </summary>
         /// <param name="board"></param>
         /// <returns></returns>
-        static HashSet<string> hashSet = new HashSet<string>();
-        static Queue<string> queue = new Queue<string>();
-        static int result = 0;
-        public static int SlidingPuzzle(int[][] board)
+        HashSet<string> hashSet = new HashSet<string>();
+        Queue<string> queue = new Queue<string>();
+
+        public int SlidingPuzzle(int[][] board)
         {
 
             string s = "";
@@ -54,30 +54,28 @@ namespace Lesson8_BFS
 
             queue.Enqueue(s);
             hashSet.Add(s);
+            int result = 0;
             while (queue.Any())
             {
                 var size = queue.Count;
                 for (int k = 0; k < size; k++)
                 {
                     var cur = queue.Dequeue();
+
+                    if (cur == "123450") return result;
                     var intArr = cur.ToArray();
                     int index0 = cur.IndexOf('0');
-
-                    var index = index0 + 1;
-                    if (isPossible(index0, index, cur, intArr))
-                        return result + 1;
-                    index = index0 - 1;
-                    if (isPossible(index0, index, cur, intArr))
-                        return result + 1;
-                    if (index > 2)
+                    if (index0 != 2)
+                        isPossible(index0, index0 + 1, cur, intArr);
+                    if (index0 != 3)
+                        isPossible(index0, index0 - 1, cur, intArr);
+                    if (index0 > 2)
                     {
-                        if (isPossible(index0, index0 - 3, cur, intArr))
-                            return result + 1;
+                        isPossible(index0, index0 - 3, cur, intArr);
                     }
                     else
                     {
-                        if (isPossible(index0, index0 + 3, cur, intArr))
-                            return result + 1;
+                        isPossible(index0, index0 + 3, cur, intArr);
                     }
                 }
 
@@ -85,14 +83,13 @@ namespace Lesson8_BFS
             }
             return -1;
         }
-        static bool isPossible(int index0, int index, string cur, char[] intArr)
+        void isPossible(int index0, int index, string cur, char[] intArr)
         {
             if (index >= 0 && index < cur.Length)
             {
                 intArr[index0] = cur[index];
                 intArr[index] = cur[index0];
                 var stringNext = new string(intArr);
-                if (stringNext == "123450") return true;
                 if (!hashSet.Contains(stringNext))
                 {
                     hashSet.Add(stringNext);
@@ -101,7 +98,6 @@ namespace Lesson8_BFS
                 intArr[index0] = cur[index0];
                 intArr[index] = cur[index];
             }
-            return false;
         }
         //#########################################################################################################
         /// <summary>
@@ -166,44 +162,44 @@ namespace Lesson8_BFS
         /// <param name="end"></param>
         /// <param name="bank"></param>
         /// <returns></returns>
-        public static int MinMutation(string start, string end, string[] bank)
+        public int MinMutation(string start, string end, string[] bank)
         {
-
             if (bank.Length == 0) return -1;
 
+            var bankSet = new HashSet<string>(bank);
+            string GeneBase = "ACGT";
             Queue<string> queue = new Queue<string>();
             queue.Enqueue(start);
-            var currentLevel = new List<string>();
-            currentLevel.Add(start);
+            bankSet.Remove(start);
             int result = 0;
-            while (queue.Count != 0)
+            while (queue.Any())
             {
-                currentLevel = new List<string>();
                 var currentSize = queue.Count;
                 for (int i = 0; i < currentSize; i++)
                 {
-                    string node = queue.Dequeue();
-                    if (node == end) return result;
+                    string current = queue.Dequeue();
+                    if (current == end) return result;
 
-                    result++;
-                    for (int n = 0; n < bank.Length; n++)
+                    foreach (char g in GeneBase)
                     {
-                        int count = 0;
-                        for (int m = 0; m < node.Length; m++)
+                        var currentGene = current.ToArray();
+                        for (int j = 0; j < current.Length; j++)
                         {
-                            if (bank[n][m] == node[m]) continue;
-
-                            count++;
-
-                        }
-                        if (count == 1) //("AACCGGTT", "AAACGGTA", new string[] { "AACCGGTA", "AACCGCTA", "AAACGGTA" });
-                        {
-                            currentLevel.Add(bank[n]);
-                            queue.Enqueue(bank[n]);
+                            char t = currentGene[j];
+                            currentGene[j] = g;
+                            var next = new string(currentGene);
+                            if (bankSet.Contains(next))
+                            {
+                                queue.Enqueue(next);
+                                bankSet.Remove(next);
+                            }
+                            currentGene[j] = t;
                         }
                     }
 
                 }
+
+                result++;
 
             }
             return -1;
