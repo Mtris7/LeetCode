@@ -13,8 +13,11 @@ namespace lesson9_BinarySearch
             //153.Find Minimum in Rotated Sorted Array
             //81. Search in Rotated Sorted Array II
             //1760. Minimum Limit of Balls in a Bag
+            //1631. Path With Minimum Effort
 
-
+            //[[10,8],[10,8],[1,2],[10,3],[1,3],[6,3],[5,2]]
+            MinimumEffortPath(new int[][] { new int[] { 10, 8 }, new int[] { 10, 8 }, new int[] { 1,2 },
+                                new int[] { 10, 3 },new int[] { 1,3 },new int[] { 6,3 },new int[] { 5,2 }});
             //FindMin(new int[] { 3, 4, 5, 1, 2 } );
             //Search(new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1 }, 2);//[1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,1,1,1,1]
             //MinimumSize(new int[] { 4, 412, 354, 607, 587, 28, 136, 327, 929, 905, 671, 811, 572, 152, 556, 96, 205, 188, 505, 14, 602, 591, 802, 662, 543, 781, 878, 812, 539, 981, 587, 716, 531, 354, 92, 165, 352, 522, 983, 966, 378, 911, 873, 606, 392, 927, 426, 726, 892, 939, 96, 419, 769, 387, 178, 895, 41, 291, 437, 513, 37, 569, 945, 102, 460 }, 33);
@@ -25,6 +28,70 @@ namespace lesson9_BinarySearch
         }
         //#####################################################################################
         //#####################################################################################
+        /// <summary>
+        /// 1631. Path With Minimum Effort
+        /// </summary>
+        /// <param name="heights"></param>
+        /// <returns></returns>
+        static Queue<int[]> queue = new Queue<int[]>();
+        static HashSet<string> list = new HashSet<string>();
+
+        static int[] kr = new int[] { 1, -1, 0, 0 };
+        static int[] kc = new int[] { 0, 0, 1, -1 };
+        public static int MinimumEffortPath(int[][] heights)
+        {
+            int result = int.MaxValue;
+            int min = 0;
+            int max = 0;
+            for (int i = 0; i < heights.Length; i++)
+            {
+                for (int j = 0; j < heights[i].Length; j++)
+                {
+                    if (heights[i][j] > max) max = heights[i][j];
+                }
+            }
+            while (min < max)
+            {
+                queue = new Queue<int[]>();
+                list = new HashSet<string>();
+                queue.Enqueue(new int[] { 0, 0 });
+                list.Add("00");
+                int mid = min + (max - min) / 2;
+                if (isPossible(mid, heights))
+                {
+                    result = Math.Min(result, mid); 
+                    max = mid;
+                }
+                else
+                    min = mid + 1;
+
+            }
+
+            return result;
+        }
+        static bool isPossible(int mid, int[][] heights)
+        {
+            while (queue.Any())
+            {
+                var cur = queue.Dequeue();
+                if (cur[0] == heights.Length - 1 && cur[1] == heights[0].Length - 1) return true;
+                for (int i = 0; i < 4; i++)
+                {
+                    int r = cur[0] + kr[i];
+                    int c = cur[1] + kc[i];
+                    if (r < 0 || r >= heights.Length || c < 0 || c >= heights[r].Length || Math.Abs(heights[r][c] - heights[cur[0]][cur[1]]) > mid)
+                    {
+                        continue;
+                    }
+                    if (!list.Contains(""+ r + c))
+                    {
+                        queue.Enqueue(new int[] { r, c });
+                        list.Add("" + r + c);
+                    }
+                }
+            }
+            return false;
+        }
         //#####################################################################################
         /// <summary>
         /// 1760. Minimum Limit of Balls in a Bag
