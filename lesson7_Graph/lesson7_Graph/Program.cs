@@ -32,24 +32,24 @@ namespace lesson7_Graph
             //how to test treeNode
             //[5,-6,10,1,2,7,8,9,3,4,11,12]
             var root = new TreeNode(5);
-            var cur = root;
-            cur.left = new TreeNode(-6);
-            cur.right = new TreeNode(10);
-            cur = cur.left;
-            cur.left = new TreeNode(1);
-            cur.right = new TreeNode(2);
-            cur = cur.left;
-            cur.left = new TreeNode(9);
-            cur.right = new TreeNode(3);
-            cur = root.left.right;
-            cur.left = new TreeNode(4);
-            cur.right = new TreeNode(11);
-            cur = root.right;
-            cur.left = new TreeNode(7);
-            cur.right = new TreeNode(8);
-            cur = cur.left;
-            cur.left = new TreeNode(12);
-            //MaxPathSum(root);
+            //var cur = root;
+            //cur.left = new TreeNode(-6);
+            //cur.right = new TreeNode(10);
+            //cur = cur.left;
+            //cur.left = new TreeNode(1);
+            //cur.right = new TreeNode(2);
+            //cur = cur.left;
+            //cur.left = new TreeNode(9);
+            //cur.right = new TreeNode(3);
+            //cur = root.left.right;
+            //cur.left = new TreeNode(4);
+            //cur.right = new TreeNode(11);
+            //cur = root.right;
+            //cur.left = new TreeNode(7);
+            //cur.right = new TreeNode(8);
+            //cur = cur.left;
+            //cur.left = new TreeNode(12);
+            MaxPathSum(root);
             //Solution.SumOfLeftLeaves(root);
             //[1,1,1,null,1,null,null,1,1,null,1]
             //Solution.LongestZigZag(root);
@@ -75,26 +75,42 @@ namespace lesson7_Graph
         }
 
         //###########################################################################################################
-        int result = int.MinValue;
         /// <summary>
         /// 124. Binary Tree Maximum Path Sum
         /// </summary>
         /// <param name="root"></param>
         /// <returns></returns>
-        public int MaxPathSum(TreeNode root)  // unfinish
+        public static int MaxPathSum(TreeNode root)
         {
-            if (root.left == null && root.right == null) return root.val;
+            //queue.Enqueue(root);
+            int result = int.MinValue;
             int maxL = int.MinValue;
             int maxR = int.MinValue;
-            if (root.left != null) maxL = MaxPathSum(root.left) + root.val;
-            if (root.right != null) maxR = MaxPathSum(root.right) + root.val;
 
-            result = Math.Max(maxL - root.val, root.val);
+            if (root.left != null) maxL = DFS(root.left) + root.val;
+            if (root.right != null) maxR = DFS(root.right) + root.val;
+            result = Math.Max(root.val, maxL - root.val);
             result = Math.Max(result, maxR - root.val);
             result = Math.Max(result, maxL);
             result = Math.Max(result, maxR);
             result = Math.Max(result, maxL + maxR - root.val);
+            result = Math.Max(result, sumChild);
             return result;
+        }
+        static int sumChild = int.MinValue;
+        static int DFS(TreeNode root)
+        {
+            if (root.left == null && root.right == null) return root.val;
+            int res = int.MinValue;
+            int maxL = int.MinValue;
+            int maxR = int.MinValue;
+            if (root.left != null) maxL = DFS(root.left) + root.val;
+            if (root.right != null) maxR = DFS(root.right) + root.val;
+
+            res = Math.Max(root.val, maxL);// root vs left vs right vs root + left vs root + right 
+            res = Math.Max(res, maxR);
+            sumChild = Math.Max(res, maxL + maxR - root.val);
+            return res;
         }
         //###########################################################################################################
         //589. N-ary Tree Preorder Traversal
