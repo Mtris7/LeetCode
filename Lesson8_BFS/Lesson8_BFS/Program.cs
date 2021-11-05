@@ -16,6 +16,21 @@ namespace Lesson8_BFS
             children = new Node(4);
             list.Add(children);
             var root = new Node(1, list);
+
+            //[1,2,3,4,null,5,6,null,null,7]
+            var tree = new TreeNode(1);
+            var cur = tree;
+            cur.left = new TreeNode(2);
+            cur.right = new TreeNode(3);
+            cur = cur.left;
+            cur.left = new TreeNode(4);
+            cur = tree.right;
+            cur.left = new TreeNode(5);
+            cur.right = new TreeNode(6);
+            cur = cur.left;
+            cur.left = new TreeNode(7);
+
+            FindBottomLeftValue(tree);
             //[[0,0,0],[1,1,0],[1,1,0]]
             //[[0,0,0],[1,1,0],[1,1,1]]
             var grid = new int[1][] { new int[1] { 0 }};
@@ -34,7 +49,77 @@ namespace Lesson8_BFS
             Console.WriteLine("Hello World!");
         }
         //#########################################################################################################
+        /// <summary>
+        /// 513. Find Bottom Left Tree Value
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static int FindBottomLeftValue(TreeNode root)//[1,2,3,4,null,5,6,null,null,7]
+        {
+            int result = 0;
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            while (queue.Any())
+            {
+                int size = queue.Count;
+                bool levelChk = true;
+                for (int i = 0; i < size; i++)
+                {
+                    var node = queue.Dequeue();
+                    if (node.left != null & levelChk)
+                    {
+                        result = node.left.val;
+                        queue.Enqueue(node.left);
+                        levelChk = false;
+                    }
+                    if (node.right != null)
+                        queue.Enqueue(node.right);
+                }
+            }
+            return result;
+        }
         //#########################################################################################################
+        /// <summary>
+        /// 103. Binary Tree Zigzag Level Order Traversal
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public IList<IList<int>> ZigzagLevelOrder(TreeNode root)
+        {
+            var result = new List<IList<int>>(); 
+            if (root == null) return result;
+            var levelList = new List<int>();
+            var queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            levelList.Add(root.val);
+            result.Add(levelList);
+            bool zigzag = false;
+            while (queue.Any())
+            {
+                int size = queue.Count;
+                levelList = new List<int>();
+                for (int i = 0; i < size; i++)
+                {
+                    var node = queue.Dequeue();
+                    if (node.left != null)
+                    {
+                        levelList.Add(node.left.val);
+                        queue.Enqueue(node.left);
+                    }
+                    if (node.right != null)
+                    {
+                        levelList.Add(node.right.val);
+                        queue.Enqueue(node.right);
+                    }
+                }
+                if (!zigzag && levelList.Any())
+                    levelList.Reverse();
+                if (levelList.Any())
+                    result.Add(levelList);
+                zigzag = !zigzag;
+            }
+            return result;
+        }
         //#########################################################################################################
         /// <summary>
         /// 773. Sliding Puzzle
