@@ -8,7 +8,7 @@ namespace lesson11_2Pointer
     {
         static void Main(string[] args)
         {
-            //NumSubarrayProductLessThanK(new int[] { 10, 5, 2, 1,2,11 },100);
+            //  NumSubarrayProductLessThanK(new int[] { 10, 5, 2, 1,2,11 },100);
             //LengthOfLongestSubstring("bbtablud");
             //FourSum(new int[] { 2, 2, 2, 2, 2 }, 8);
             //240. Search a 2D Matrix II
@@ -31,32 +31,24 @@ namespace lesson11_2Pointer
 
         public int NumSubarrayProductLessThanK(int[] nums, int k)
         {
-            if (nums == null || k == 0 || k == 1)
-            {
-                return 0;
-            }
-
-            int result = 1;
+            if (nums.Length == 0 || k == 0 || k == 1) return 0;
             int i = 0;
             int len = 0;
-            int count = 0;
+            int result = 0;
+            int multi = 1;
             while (i < nums.Length)
             {
-                result *= nums[i]; //[10,5,2,1,2, 11]
-                if (result >= k)
+                multi *= nums[i];
+                while (multi >= k)
                 {
-                    while (result >= k)
-                    {
-                        result /= nums[i - len];// when len = 1 => result = 1
-                                                //when len = 2 => result = 3 = result + len
-                        len--;                  //len = 3=> result = 6 = result + len
-                                                //len = 4 => result = 10 = result + len
-                    }
-                }
-                count += ++len;
+                    multi /= nums[i - len]; // when len = 1 => result = 1
+                    len--;                  //when len = 2 => result = 3 = result + len
+                }                           //len = 3=> result = 6 = result + len
+                result += ++len;            //len = 4 => result = 10 = result + len
                 i++;
+
             }
-            return count;
+            return result;
         }
         // C1:
         //public int NumSubarrayProductLessThanK(int[] nums, int k)
