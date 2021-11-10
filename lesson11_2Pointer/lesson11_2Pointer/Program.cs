@@ -18,9 +18,121 @@ namespace lesson11_2Pointer
             // 485. Max Consecutive Ones
             // 26. Remove Duplicates from Sorted Array
             //845.Longest Mountain in Array
+
+            //"ADOBECODEBAaNC"
+            //"ABaC"
+            //"ADOBECODEBANC"
+            // "ABC"
+            //"bbaa"
+            //"aba"
+            LongestWPI(new int[] { 0, 6, 6, 9, 9, 9, 9, 9, 9, 5 });
             Console.WriteLine("Hello World!");
         }
         //##########################################################################################################################
+        /// <summary>
+        /// 1124. Longest Well-Performing Interval
+        /// </summary>
+        /// <param name="hours"></param>
+        /// <returns></returns>
+        public static int LongestWPI(int[] hours)
+        {
+            int left = 0;
+            int rightR = 0;
+            bool check = false;
+            int count = 0;
+            int sum = 0;
+            for (int right = 0; right < hours.Length; right++)
+            {
+                count++;
+                    
+                if(check)
+                {
+                    sum += hours[right] + hours[left];
+                    check = false;
+                }
+                else
+                    sum += hours[right];
+
+                if (sum / count > 8)
+                {
+                    if (left > 0)
+                    {
+                        left--;
+                        count++;
+                        check = true;
+                    }
+                    rightR = right;
+                }
+                else
+                {
+                    sum -= hours[left];
+                    left++;
+                    count--;
+                }
+            }
+            return rightR - left + 1;
+        }
+        //##########################################################################################################################
+        /// <summary>
+        /// 76. Minimum Window Substring
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        /// 
+        public string MinWindow(string s, string t)
+        {
+            if (t.Length > s.Length) return "";
+
+            var tCharAndCount = new int[256];
+            foreach (var c in t)
+            {
+                tCharAndCount[c]++;
+            }
+            int count = t.Length;
+            int left = 0;
+            int globalLeft = -1;
+            int globalLen = int.MaxValue;
+            var sCharAndCount = new int[256];
+
+            for (int right = 0; right < s.Length; right++)
+            {
+                var cur = s[right];
+                if (tCharAndCount[cur] > 0)
+                {
+                    sCharAndCount[cur]++;
+                    if (sCharAndCount[cur] <= tCharAndCount[cur])
+                    {
+                        count--;
+                    }
+
+                    //find left
+                    while (left < right)
+                    {
+                        if (sCharAndCount[s[left]] == 0 || sCharAndCount[s[left]] > tCharAndCount[s[left]])
+                        {
+                            if (sCharAndCount[s[left]] > 0) sCharAndCount[s[left]]--;
+                            left++;
+                        }
+                        else break;
+                    }
+
+                    if (count == 0)
+                    {
+                        var localLen = right - left + 1;
+                        if (globalLen > localLen)
+                        {
+                            globalLeft = left;
+                            globalLen = localLen;
+                        }
+                    }
+                }
+
+            }
+            if (count != 0) return "";
+            return s.Substring(globalLeft, globalLen);
+        }
+
         //##########################################################################################################################
         /// <summary>
         /// 713. Subarray Product Less Than K
