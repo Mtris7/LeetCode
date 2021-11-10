@@ -30,11 +30,47 @@ namespace lesson11_2Pointer
         }
         //##########################################################################################################################
         /// <summary>
+        /// 904. Fruit Into Baskets
+        /// </summary>
+        /// <param name="fruits"></param>
+        /// <returns></returns>
+        public int TotalFruit(int[] fruits) //unfinish
+        {
+            int count = 0;
+            int twoBaskets = 0;
+            int result = 0;
+            var dic = new Dictionary<int, int>();
+            for (int right = 0; right < fruits.Length; right++)
+            {
+                count++;
+                if (!dic.ContainsKey(fruits[right]))
+                {
+                    twoBaskets++;
+                    dic.Add(fruits[right], right + 1);
+                    if (twoBaskets > 2)
+                    {
+                        var item = dic.First();
+                        result = Math.Max(count - 1, result);
+                        count = count - item.Value;
+                        dic.Remove(item.Key);
+                        continue;
+                    }
+                }
+                else
+                    dic[fruits[right]]++;
+
+                result = Math.Max(count, result);
+
+            }
+            return result;
+        }
+        //##########################################################################################################################
+        /// <summary>
         /// 1124. Longest Well-Performing Interval
         /// </summary>
         /// <param name="hours"></param>
         /// <returns></returns>
-        public static int LongestWPI(int[] hours)
+        public static int LongestWPI(int[] hours) // unfinish
         {
             int left = 0;
             int rightR = 0;
@@ -44,8 +80,8 @@ namespace lesson11_2Pointer
             for (int right = 0; right < hours.Length; right++)
             {
                 count++;
-                    
-                if(check)
+
+                if (check)
                 {
                     sum += hours[right] + hours[left];
                     check = false;
