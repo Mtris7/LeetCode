@@ -8,40 +8,21 @@ namespace Lesson4
     {
         static void Main(string[] args)
         {
-            //217.Contains Duplicate
-            //219. Contains Duplicate II
-            //1. Two Sum
-            //454. 4Sum II
-            //
-            //974. Subarray Sums Divisible by K
-            //387. First Unique Character in a String
-            //1748. Sum of Unique Elements
-            ListNode head = new ListNode();
-            var current = head;
-            current.next = new ListNode(1);
-            current = current.next;
-            current.next = new ListNode(2);
-            //current = current.next;
-            //current.next = new ListNode(3);
-            //current = current.next;
-            //current.next = new ListNode(2);
-            //current = current.next;
-            //current.next = new ListNode(1);
-            //current = current.next;
-            //current.next = new ListNode(3);
-            //current = current.next;
-            //current.next = new ListNode(1);
-            //current = current.next;
-            //current.next = new ListNode(2);
-            //current = current.next;
-            //current.next = new ListNode(3);
-            //current = current.next;
-            //current.next = new ListNode(2);
-            //current = current.next;
-            //current.next = new ListNode(1);//[1,2,3,2,1,3,1,2,3,2,1]
-            Solution.GetMid(head.next);
+            //217   https://leetcode.com/problems/contains-duplicate/
+            //219   https://leetcode.com/problems/contains-duplicate-ii/
+            //1     https://leetcode.com/problems/two-sum/
+            //454   https://leetcode.com/problems/4sum-ii/
+            //sub   https://leetcode.com/problems/palindrome-permutation/
+            //sub   https://leetcode.com/problems/subarray-sums-divisible-by-k/
+            //387   https://leetcode.com/.../first-unique-character-in-a-string/
+            //sub   https://leetcode.com/problems/find-anagram-mappings/
+            //1748  https://leetcode.com/problems/sum-of-unique-elements/
+
             Console.WriteLine("Hello World!");
         }
+
+        ///BONUS
+
         //532. K-diff Pairs in an Array
         public static int FindPairs(int[] nums, int k)
         {
@@ -218,106 +199,8 @@ namespace Lesson4
         //    }
         //    return result;
         //}
-        //217. Contains Duplicate
-        public bool ContainsDuplicate(int[] nums)
-        {
-            /* create list has a distince value in nums
-             * run loop i -> length of nums -> if value repeat => return
-             */
-            List<int> list = new List<int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (!list.Contains(nums[i]))
-                    list.Add(nums[i]);
-                else return true;
-            }
-            return false;
-        }
-        //219. Contains Duplicate II
-        public bool ContainsNearbyDuplicate(int[] nums, int k)
-        {
-            /* create hashtable to save num[i] is a key and index of array is a value
-             * if hashtable has key exist  => i is new index 
-             *      => if i- old index > k => i = new index of array
-             *          else return i and old index
-             */
-            Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-
-                if (!dic.ContainsKey(nums[i]))
-                    dic.Add(nums[i], i);
-                else
-                {
-                    int value = dic[nums[i]];
-                    if (Math.Abs(i - value) <= k)
-                        return true;
-                    dic.Remove(nums[i]);
-                    dic.Add(nums[i], i);
-                }
-            }
-
-            return false;
-        }
-        //1. Two Sum
-        public int[] TwoSum(int[] nums, int target)
-        {
-            /* i create hastable . Add value in nums and index of value in nums to hastable ( if hastable not have first?)
-             * compare hastable with sub (target and value in nums) => it has => return index in it
-             * it not return empty ( this case is not empty)?
-             * ask interview about empty?
-             */
-            var dic = new Dictionary<int, int>();
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (dic.ContainsKey(target - nums[i]))
-                    return new int[2] { dic[target - nums[i]], i };
-                if (!dic.ContainsKey(nums[i]))
-                    dic.Add(nums[i], i);
-            }
-            return new int[] { };
-        }
-        //454. 4Sum II
-        public  int FourSumCount(int[] nums1, int[] nums2, int[] nums3, int[] nums4)
-        {
-            /* i create 2 loop :
-             * loop1 , num1 : i = 0 to n and num2 : j = 0 to m
-             * example : for (i -> n (num1)
-             *              for(j-> m (num2)
-             *                  add total nums1[i] and nums2[j] and the number of time we have this sum : this case is 1  to dictionary 
-             *                  
-             * loop2 : i also create loop but i don't add to dictionary , instead that, i compare dic with negative of sum
-             * if true (i mean dic has negative of the sum =>> total this  = 0 right?)
-             * count += the number of occurrences in dic, yes, count is the result.
-             * it's my solution
-             */
-            Dictionary<int, int> dic = new Dictionary<int, int>();
-            for (int i = 0; i < nums1.Length; i++)
-            {
-                for (int j = 0; j < nums2.Length; j++)
-                {
-                    int sum = nums1[i] + nums2[j];
-                    if (dic.ContainsKey(sum))
-                        dic[sum]++;
-                    else
-                    {
-                        dic[sum] = 1;
-                    }
-                }
-            }
-            int result = 0;
-            for (int i = 0; i < nums3.Length; i++)
-            {
-                for (int j = 0; j < nums4.Length; j++)
-                {
-                    int sum = nums3[i] + nums4[j];
-                    if (dic.ContainsKey(-sum))
-                        result += dic[-sum];
-                }
-            }
-            return result;
-        }
-
+        
+        
         //387. First Unique Character in a String
         public int FirstUniqChar(string s)
         {
@@ -335,32 +218,6 @@ namespace Lesson4
             }
             int result = dic.Where(x => x.Value >= 0).Any() ? dic.First(x => x.Value >= 0).Value : -1;
             return result;
-        }
-
-        //1748. Sum of Unique Elements
-        public int SumOfUnique(int[] nums)
-        {
-            /* create hashtable has key is a value of array and value of hastable is 1
-             * loop i-> n : compare key if not exist => add to dic and calculator sum with nums [i]
-             * if exist -> subtract nums[i] in sum and increate  1 in value of hashtable
-             * return sum
-             */
-            var dic = new Dictionary<int, int>();
-            int sum = 0;
-            for (int i = 0; i < nums.Length; i++)
-            {
-                if (!dic.ContainsKey(nums[i]))
-                {
-                    dic.Add(nums[i], 1);
-                    sum += nums[i];
-                }
-                else if (sum > 0 && dic[nums[i]] == 1)
-                {
-                    sum -= nums[i];
-                    dic[nums[i]]++;
-                }
-            }
-            return sum;
         }
         //266. Palindrome Permutation
         public bool CanPermutePalindrome(string s)
