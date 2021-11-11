@@ -8,70 +8,24 @@ namespace lesson7_Graph
     {
         static void Main(string[] args)
         {
-            //FindCircleNum(new int[3][] { new int[]{ 1, 1, 0 }, new int[] { 1, 1, 0 }, new int[] { 0, 0, 1 } });
-
-            //[[1],[2],[3],[]]
-            //IList<IList<int>> rooms = new List<IList<int>>();
-            //List<int> list = new List<int>();
-            //list.Add(1);
-            //rooms.Add(list);
-            //list = new List<int>();
-            //list.Add(2);
-            //rooms.Add(list);
-            //list = new List<int>();
-            //list.Add(3);
-            //rooms.Add(list);
-            //list = new List<int>();
-            //rooms.Add(list);
-            //CanVisitAllRooms(rooms);
-            //NumIslands(new char[4][] { new char[]{ '1', '1', '0', '0','0' },
-            //                           new char[] { '1', '1', '0' , '0', '0'}, 
-            //                           new char[]{ '0', '0', '1', '0','0' },
-            //                           new char[] { '0', '0', '0', '1',  '1' }});
-
-            //how to test treeNode
-            //[5,-6,10,1,2,7,8,9,3,4,11,12]
-            var root = new TreeNode(5);
-            //var cur = root;
-            //cur.left = new TreeNode(-6);
-            //cur.right = new TreeNode(10);
-            //cur = cur.left;
-            //cur.left = new TreeNode(1);
-            //cur.right = new TreeNode(2);
-            //cur = cur.left;
-            //cur.left = new TreeNode(9);
-            //cur.right = new TreeNode(3);
-            //cur = root.left.right;
-            //cur.left = new TreeNode(4);
-            //cur.right = new TreeNode(11);
-            //cur = root.right;
-            //cur.left = new TreeNode(7);
-            //cur.right = new TreeNode(8);
-            //cur = cur.left;
-            //cur.left = new TreeNode(12);
-            MaxPathSum(root);
-            //Solution.SumOfLeftLeaves(root);
-            //[1,1,1,null,1,null,null,1,1,null,1]
-            //Solution.LongestZigZag(root);
-            //Solution.SumOfLeftLeaves(root);
-            //Solution.Rob(root);
-            Console.WriteLine("Hello World!");
-            //Solution
-            //695. Max Area of Island
-            //200. Number of Islands
-            //841. Keys and Rooms
-            //547. Number of Provinces
-            //404.Sum of Left Leaves
-            // 111. Minimum Depth of Binary Tree
-            //104. Maximum Depth of Binary Tree
-            //543. Diameter of Binary Tree
-            //687. Longest Univalue Path
-            //1372. Longest ZigZag Path in a Binary Tree
-            //144. Binary Tree Preorder Traversal
-            //94. Binary Tree Inorder Traversal
-            //145. Binary Tree Postorder Traversal
-            //337.House Robber III
-            //589. N-ary Tree Preorder Traversal
+            //Sub   https://leetcode.com/.../number-of-connected-components.../
+            //547   https://leetcode.com/problems/number-of-provinces/
+            //841   https://leetcode.com/problems/keys-and-rooms/
+            //200   https://leetcode.com/problems/number-of-islands/
+            //695   https://leetcode.com/problems/max-area-of-island/
+            //404   https://leetcode.com/problems/sum-of-left-leaves/
+            //111   https://leetcode.com/problems/minimum-depth-of-binary-tree/
+            //104   https://leetcode.com/problems/maximum-depth-of-binary-tree/
+            //543   https://leetcode.com/problems/diameter-of-binary-tree/ 
+            //508   https://leetcode.com/problems/most-frequent-subtree-sum/ unfinish
+            //Sub   https://leetcode.com/problems/diameter-of-n-ary-tree/
+            //687   https://leetcode.com/problems/longest-univalue-path/
+            //1372  https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/
+            //337   https://leetcode.com/problems/house-robber-iii/
+            //144   https://leetcode.com/problems/binary-tree-preorder-traversal/
+            //94    https://leetcode.com/problems/binary-tree-inorder-traversal/
+            //145   https://leetcode.com/problems/binary-tree-postorder-traversal/
+            //590   https://leetcode.com/problems/n-ary-tree-postorder-traversal/
         }
 
         //###########################################################################################################
@@ -132,132 +86,7 @@ namespace lesson7_Graph
                 else list.Add(item.val);
             }
         }
-        //###########################################################################################################
-        //695. Max Area of Island
-        private int count = 0;
-        private int max = 0;
-        public int MaxAreaOfIsland(int[][] grid)
-        {
-            bool[][] visited = new bool[grid.Length][];
-            for (int i = 0; i < grid.Length; i++)
-                visited[i] = new bool[grid[i].Length];
 
-            for (int i = 0; i < grid.Length; i++)
-            {
-                for (int j = 0; j < grid[0].Length; j++)
-                {
-                    if (!visited[i][j] && grid[i][j] == 1)
-                    {
-                        if (max < count) max = count;
-                        count = 0;
-                        DFS(i, j, grid, visited);
-                    }
-                }
-            }
-            if (max < count) max = count;
-            return max;
-        }
-        private void DFS(int row, int column, int[][] grid, bool[][] visited)
-        {
-            count++;
-            visited[row][column] = true;
-            for (int i = 0; i < 4; i++)
-            {
-                int r = dr[i] + row;
-                int c = dc[i] + column;
-                if (r >= 0 && r < grid.Length && c >= 0 && c < grid[0].Length
-                   && !visited[r][c] && grid[r][c] == 1)
-                    DFS(r, c, grid, visited);
-            }
-        }
-        //###########################################################################################################
-        //200. Number of Islands
-
-        private int[] dr = new int[] { 0, 1, 0, -1 };
-        private int[] dc = new int[] { 1, 0, -1, 0 };
-        public int NumIslands(char[][] grid)
-        {
-            bool[][] visited = new bool[grid.Length][];
-            for (int i = 0; i < grid.Length; i++)
-                visited[i] = new bool[grid[i].Length];
-            int count = 0;
-            for (int i = 0; i < grid.Length; i++)
-            {
-                for (int j = 0; j < grid[0].Length; j++)
-                {
-                    if (!visited[i][j] && grid[i][j] == '1')
-                    {
-                        count++;
-                        DFS(i, j, grid, visited);
-                    }
-                }
-            }
-            return count;
-        }
-        private void DFS(int row, int column, char[][] grid, bool[][] visited)
-        {
-            visited[row][column] = true;
-            for (int i = 0; i < 4; i++)
-            {
-                int r = dr[i] + row;
-                int c = dc[i] + column;
-                if (r >= 0 && r < grid.Length && c >= 0 && c < grid[0].Length
-                   && !visited[r][c] && grid[r][c] == '1')
-                    DFS(r, c, grid, visited);
-            }
-        }
-        //#############################################################################################################
-        //841. Keys and Rooms
-        //Create DFSVisitRoom to
-        public bool CanVisitAllRooms(IList<IList<int>> rooms)
-        {
-            bool[] visited = new bool[rooms.Count];
-            DFSVisitRoom(0, rooms, visited);
-            return visited.Where(x => x == true).ToList().Count == rooms.Count;
-        }
-        private void DFSVisitRoom(int startNode, IList<IList<int>> rooms, bool[] visited)
-        {
-            visited[startNode] = true;
-            for (int i = 0; i <= rooms[startNode].Count - 1; i++)
-            {
-                if (!visited[rooms[startNode][i]])
-                    DFSVisitRoom(rooms[startNode][i], rooms, visited);
-            }
-        }
-        //547. Number of Provinces
-
-        /* create list "visited" is list bool equal number of point in array
-         * create loop run from i to array length if visited[i] equal false => run dfs()
-         * inital dfs : check any value in point => if (
-         */
-        public static int FindCircleNum(int[][] isConnected)
-        {
-            int result = 0;
-            bool[] visited = new bool[isConnected.GetLength(0)];
-
-            for (int i = 0; i <= isConnected[0].Length - 1; i++)
-            {
-                if (!visited[i])
-                {
-                    DFS(i, isConnected, visited);
-                    result++;
-                }
-            }
-            return result;
-        }
-
-        private static void DFS(int startNode, int[][] graph, bool[] visited)
-        {
-            visited[startNode] = true;
-
-            for (int i = 0; i <= graph[0].Length - 1; i++)
-            {
-                if (startNode == i)
-                    continue;
-
-                if (graph[startNode][i] == 1 && !visited[i])
-                    DFS(i, graph, visited);
-            }
-        }
     }
+
 }
