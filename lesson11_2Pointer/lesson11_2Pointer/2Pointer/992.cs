@@ -15,50 +15,49 @@ namespace lesson11_2Pointer
         /// <param name="nums"></param>
         /// <param name="k"></param>
         /// <returns></returns>
-        public static int SubarraysWithKDistinct(int[] nums, int k) // unfinish
+        public int SubarraysWithKDistinct(int[] nums, int k)
         {
             /*
+
                 left,right = 0; k = 3
                 l
-             1   1   2   1   3   4
-                                r
+                2   1   1   2   1   3   4
+                r
+
+                left,right = 0; k = 3
+                l
+         2   1   1   2   1   3   4
+                                 r
                 right++;
             */
-            var dic = new Dictionary<int, int>();
+            var map = new int[nums.Length + 1];
+            int prefix = 0;
+            int result = 0;
             int count = 0;
             int left = 0;
-            int result = 0;
-            for (int right = 0; right < nums.Length; right++)
+            int right = 0;
+            while (right < nums.Length)
             {
-                if (!dic.ContainsKey(nums[right]))
+                if (map[nums[right++]]++ == 0)
                 {
                     count++;
-                    dic.Add(nums[right], right);
-
-                    if (count > k || right == nums.Length - 1)
-                    {
-                        while (count >= k)
-                        {
-                            var item = dic.First(x => x.Value == dic.Values.Min());
-                            count--;
-                            if (item.Value - left == 1) result++;
-                            if (item.Value - left == 2) result += 3;
-                            else
-                            {
-                                while (left <= item.Value - 2)
-                                {
-                                    left++;
-                                    result += (item.Value - left);
-                                }
-                            }
-                           
-                            dic.Remove(item.Key);
-                        }
-
-                    }
                 }
-                else
-                    dic[nums[right]] = right;
+                if (count > k)
+                {
+                    map[nums[left++]]--;
+                    count--;
+                    prefix = 0;
+                }
+                while (map[nums[left]] > 1)
+                {
+                    map[nums[left++]]--;
+                    prefix++;
+                }
+
+                if (count == k)
+                {
+                    result += prefix + 1;
+                }
             }
             return result;
         }

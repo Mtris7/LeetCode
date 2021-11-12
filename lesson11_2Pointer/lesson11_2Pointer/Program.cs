@@ -34,7 +34,7 @@ namespace lesson11_2Pointer
             //      https://leetcode.com/problems/top-k-frequent-elements/ (giải quyết bởi Qselect, thử lại với đống, so sánh thời gian chạy)
             //      https://leetcode.com/pro.../kth-largest-element-in-an-array/
 
-            _992.SubarraysWithKDistinct(new int[] { 1, 2, 1, 2, 3 }, 2);//1, 2, 1, 3, 4 ; ... 1, 1, 2, 1, 2, 3, 4
+            _992.SubarraysWithKDistinct(new int[] { 2   ,1  , 1  , 1  , 3  , 4 ,5,16,17,18,19}, 2);//1, 2, 1, 3, 4 ; ... 1, 1, 2, 1, 2, 3, 4
             Console.WriteLine("Hello World!");
         }
         
