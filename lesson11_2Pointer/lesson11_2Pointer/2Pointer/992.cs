@@ -42,7 +42,7 @@ namespace lesson11_2Pointer
                 {
                     count++;
                 }
-                if (count > k)
+                if (count > k) 
                 {
                     map[nums[left++]]--;
                     count--;
