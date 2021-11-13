@@ -41,14 +41,71 @@ namespace LeetCode_L3
             //    string b = s.Substring(k + 1);
 
             //}
+            //_148.quickSort(new int[] { 10, 80, 30, 90, 40, 50, 70 }, 0, 6);
+            //_148.partition(new int[] { 10, 80, 30, 90, 40, 50, 70 }, 0, 6);
+            IsPowofTwo(0);
+            IsPowofTwo(1);
+            IsPowofTwo(2);
+            JudgeSquareSum(3);
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
-            /*basic-calculator-ii
-             * using stack : add number if cal * or / we cal first to add stack
-             * 
-             */
-        
+        /*basic-calculator-ii
+         * using stack : add number if cal * or / we cal first to add stack
+         * 
+         */
+        public static bool JudgeSquareSum(int c)
+        {   
+            for (int a = 0; a * a <= c / 2; a++)
+            {
+                int a2 = a * a;
+                int b2 = c - a2;
+
+                if (b2 == 1 || b2 == 0 || IsPowofTwo(b2))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        private static bool IsPowofTwo(int num)
+        {
+            //if (num == 0 || num == 1 || num == 2) return false;
+            return (num & (num - 1)) == 0;
+        }
+        private bool IsPerfectSquare(int num)
+        {
+            checked
+            {
+                int left = 1;
+                int right = num;
+
+                while (left < right)
+                {
+                    int mid = left + (right - left) / 2;
+                    long lMid = mid;
+                    long sqr = lMid * lMid;
+
+                    if (sqr == num)
+                    {
+                        return true;
+                    }
+
+                    if (sqr < num)
+                    {
+                        left = mid + 1;
+                        continue;
+                    }
+
+                    right = mid;
+                }
+
+                long lLeft = left;
+                return (lLeft * lLeft) == (long)num;
+
+            }
+        }
         //roman-to-integer
         public int RomanToInt(string s)
         {

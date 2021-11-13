@@ -1,50 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace LeetCode_L3.Sorting
+namespace LeetCode_L3
 {
-    class _148
+    public class _148
     {
-        //sort-list
         public ListNode SortList(ListNode head)
         {
-            if (head == null || head.next == null) return head;
-            ListNode mid = GetMid(head);
-            ListNode left = SortList(head);
-            ListNode right = SortList(mid);
-            return MergeNode(left, right);
-        }
-        private ListNode MergeNode(ListNode list1, ListNode list2)
-        {
-            ListNode dummyHead = new ListNode(0);
-            ListNode ptr = dummyHead;
-            while (list1 != null && list2 != null)
+            if (head == null) return head;
+            var dic = new Dictionary<int, int>();
+            int k = 0;
+            while (head != null)
             {
-                if (list1.val < list2.val)
-                {
-                    ptr.next = list1;
-                    list1 = list1.next;
-                }
-                else
-                {
-                    ptr.next = list2;
-                    list2 = list2.next;
-                }
+                dic.Add(k, head.val);
+                head = head.next;
+                k++;
             }
-            if (list1 != null) ptr.next = list1;
-            else ptr.next = list2;
-            return dummyHead.next;
-        }
-        ListNode GetMid(ListNode head)
-        {
-            ListNode midPrev = null;
-            while (head != null && head.next != null)
+            var arr = dic.Values.ToArray();
+            Array.Sort(arr);
+            head = new ListNode(arr[0]);
+            var cur = head;
+            for (int i = 1; i < arr.Length; i++)
             {
-                midPrev = (midPrev == null) ? head : midPrev.next;
-                head = head.next.next;
+                cur.next = new ListNode(arr[i]);
+                cur = cur.next;
             }
-            return midPrev.next;
+            return head;
         }
     }
 }
