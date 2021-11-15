@@ -17,6 +17,7 @@ namespace lesson11_Heap_PriorityQueue
             //
             //
             //
+            _347.TopKFrequent(new int[] { 1,1,1,3,2,2,2}, 2);
             Console.WriteLine("Hello World!");
         }
         
