@@ -43,10 +43,17 @@ namespace LeetCode_L3
             //}
             //_148.quickSort(new int[] { 10, 80, 30, 90, 40, 50, 70 }, 0, 6);
             //_148.partition(new int[] { 10, 80, 30, 90, 40, 50, 70 }, 0, 6);
-            IsPowofTwo(0);
-            IsPowofTwo(1);
-            IsPowofTwo(2);
-            JudgeSquareSum(3);
+            //IsPowofTwo(0);
+            //IsPowofTwo(1);
+            //IsPowofTwo(2);
+            //JudgeSquareSum(3);
+            //var l1 = new ListNode(1);
+            //l1.next = new ListNode(2);
+            //l1.next.next = new ListNode(4);
+            //var l2 = new ListNode(1);
+            //l2.next = new ListNode(2);
+            //l2.next.next = new ListNode(3);
+            //_21.MergeTwoLists(l1, l2);
             Console.WriteLine("Hello World!");
             Console.ReadKey();
         }
