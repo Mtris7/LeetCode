@@ -20,8 +20,20 @@ namespace Lesson8_BFS
             //433   https://leetcode.com/problems/minimum-genetic-mutation/
             //1293  https://leetcode.com/.../shortest-path-in-a-grid-with.../ unfinish
             //773   https://leetcode.com/problems/sliding-puzzle/
-
-
+            var root = new TreeNode(1);
+            root.left = new TreeNode(10);
+            root.right = new TreeNode(4);
+            var cur = root.left;
+            cur.left = new TreeNode(3);
+            cur = cur.left;
+            cur.left = new TreeNode(12);
+            cur.right = new TreeNode(8);
+            cur = root.right;
+            cur.left = new TreeNode(7);
+            cur.right = new TreeNode(18);
+            cur = cur.left;
+            cur.left = new TreeNode(6);
+            _1609.IsEvenOddTree(root);
             Console.WriteLine("Hello World!");
         }
         //#########################################################################################################
