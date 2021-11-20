@@ -21,19 +21,19 @@ namespace Lesson8_BFS
             //1293  https://leetcode.com/.../shortest-path-in-a-grid-with.../ unfinish
             //773   https://leetcode.com/problems/sliding-puzzle/
             var root = new TreeNode(1);
-            root.left = new TreeNode(10);
-            root.right = new TreeNode(4);
+            root.left = new TreeNode(2);
+            root.right = new TreeNode(3);
             var cur = root.left;
-            cur.left = new TreeNode(3);
+            cur.right = new TreeNode(4);
             cur = cur.left;
-            cur.left = new TreeNode(12);
-            cur.right = new TreeNode(8);
-            cur = root.right;
-            cur.left = new TreeNode(7);
-            cur.right = new TreeNode(18);
-            cur = cur.left;
-            cur.left = new TreeNode(6);
-            _1609.IsEvenOddTree(root);
+            //cur.left = new TreeNode(12);
+            //cur.right = new TreeNode(8);
+            //cur = root.right;
+            //cur.left = new TreeNode(7);
+            //cur.right = new TreeNode(18);
+            //cur = cur.left;
+            //cur.left = new TreeNode(6);
+            //_993.IsCousins(root, 2, 3);
             Console.WriteLine("Hello World!");
         }
         //#########################################################################################################
