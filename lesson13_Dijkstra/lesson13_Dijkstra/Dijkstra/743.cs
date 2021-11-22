@@ -32,15 +32,13 @@ namespace lesson13_Dijkstra
             while (!heap.IsEmpty())
             {
                 var curr = heap.Pop();
-                foreach (var item in graph.Where(x => x.Key == curr.Item1))
+                foreach (var pointCost in graph[curr.Item1])
                 {
-                    var pointCost = item.Value;
-                    if (!hashSet.Cointains(pointCost.Item1))
-                        heap.Push((pointCost.Item1, pointCost.Item2 + cur.Item2));
+                    heap.Push((pointCost.Item1, pointCost.Item2 + curr.Item2));
                     hashSet.Add(pointCost.Item1);
-                    if (pointCost.Item2 + cur.Item2 < res[pointCost.Item1])
+                    if (pointCost.Item2 + curr.Item2 < res[pointCost.Item1])
                     {
-                        res[pointCost.Item1] = pointCost.Item2 + cur.Item2;
+                        res[pointCost.Item1] = pointCost.Item2 + curr.Item2;
                     }
                 }
             }
