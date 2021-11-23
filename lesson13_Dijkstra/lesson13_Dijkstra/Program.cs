@@ -18,6 +18,21 @@ namespace lesson13_Dijkstra
             //4
             //_1514.MaxProbability(5, new int[6][] { new int[] { 1, 4 }, new int[] { 2, 4 }, new int[] { 0, 4 }, new int[] { 0, 3 }, new int[] { 0, 2 }
             //                    , new int[] { 2,3}} , new double[] { 0.37, 0.17, 0.93, 0.23, 0.39, 0.04 }, 3, 4);
+
+
+            //            3
+            //[[0, 1, 100],[1,2,100],[0,2,500]]
+            //0
+            //2
+            //1
+
+            //5
+            //[[0, 1, 5],[1,2,5],[0,3,2],[3,1,2],[1,4,1],[4,2,1]]
+            //0
+            //2
+            //2
+            _787.FindCheapestPrice(5, new int[6][] { new int[] { 0, 1, 5 }, new int[] { 1, 2, 5 }, new int[] { 0, 3, 2 } ,
+                                        new int[] { 3,1,2 }, new int[] { 1,4,1 }, new int[] { 4, 2, 1 } }, 0, 2, 2);
             Console.WriteLine("Hello World!");
         }
     }
