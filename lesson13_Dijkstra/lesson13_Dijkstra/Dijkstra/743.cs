@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace lesson13_Dijkstra
 {
     public class _743
     {
-        public static int NetworkDelayTime(int[][] times, int n, int k)
+        public int NetworkDelayTime(int[][] times, int n, int k)
         {
 
             var graph = new Dictionary<int, List<(int, int)>>();
@@ -27,22 +28,25 @@ namespace lesson13_Dijkstra
                 res[i] = int.MaxValue;
             }
             res[k - 1] = 0;
-            var hashSet = new HashSet<int>();
-            hashSet.Add(k);
+
             while (!heap.IsEmpty())
             {
                 var curr = heap.Pop();
-                foreach (var pointCost in graph[curr.Item1])
+                if (graph.ContainsKey(curr.Item1))
                 {
-                    heap.Push((pointCost.Item1, pointCost.Item2 + curr.Item2));
-                    hashSet.Add(pointCost.Item1);
-                    if (pointCost.Item2 + curr.Item2 < res[pointCost.Item1])
+                    foreach (var pointCost in graph[curr.Item1])
                     {
-                        res[pointCost.Item1] = pointCost.Item2 + curr.Item2;
+                        if (pointCost.Item2 + curr.Item2 < res[pointCost.Item1 - 1])
+                        {
+                            heap.Push((pointCost.Item1, pointCost.Item2 + curr.Item2));
+                            res[pointCost.Item1 - 1] = pointCost.Item2 + curr.Item2;
+                        }
                     }
                 }
+
             }
-            return 0;
+            var max = res.Max();
+            if (max == int.MaxValue) return -1;
+            return max;
         }
     }
-}
