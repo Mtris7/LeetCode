@@ -31,8 +31,9 @@ namespace lesson13_Dijkstra
             //0
             //2
             //2
-            _787.FindCheapestPrice(5, new int[6][] { new int[] { 0, 1, 5 }, new int[] { 1, 2, 5 }, new int[] { 0, 3, 2 } ,
-                                        new int[] { 3,1,2 }, new int[] { 1,4,1 }, new int[] { 4, 2, 1 } }, 0, 2, 2);
+            //_787.FindCheapestPrice(5, new int[6][] { new int[] { 0, 1, 5 }, new int[] { 1, 2, 5 }, new int[] { 0, 3, 2 } ,
+            //                            new int[] { 3,1,2 }, new int[] { 1,4,1 }, new int[] { 4, 2, 1 } }, 0, 2, 2);
+            //_990.EquationsPossible(new string[] { "a==b", "b==c", "c==d", "x!=c", "x==a" });
             Console.WriteLine("Hello World!");
         }
     }
