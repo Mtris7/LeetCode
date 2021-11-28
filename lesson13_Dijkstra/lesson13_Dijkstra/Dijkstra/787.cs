@@ -21,33 +21,44 @@ namespace lesson13_Dijkstra
             var heap = new Heap<(int, int, int)>(HeapType.MinHeap, compare);
             heap.Push((src, k + 1, 0));
 
-            var res = new int[n];
+            var res = new int[n][];
             for (int i = 0; i < n; i++)
             {
-                res[i] = int.MaxValue;
+                res[i] = new int[k + 2];
+                for (int j = 0; j < k + 2; j++)
+                    res[i][j] = int.MaxValue;
             }
-            res[src] = 0;
+            res[src][k + 1] = 0;
 
             while (!heap.IsEmpty())
             {
                 var curr = heap.Pop();
                 var kStop = curr.Item2;
-                if (graph.ContainsKey(curr.Item1) && kStop > 0)
+                if (kStop == 0) continue;
+                if (graph.ContainsKey(curr.Item1))
                 {
-                    kStop--;
                     foreach (var pointCost in graph[curr.Item1])
                     {
-                        heap.Push((pointCost.Item1, kStop, pointCost.Item2 + curr.Item3));
-                        if (pointCost.Item2 + curr.Item3 < res[pointCost.Item1])
+
+                        if (res[pointCost.Item1][kStop - 1] > res[curr.Item1][kStop] + pointCost.Item2)
                         {
-                            res[pointCost.Item1] = pointCost.Item2 + curr.Item3;
+                            res[pointCost.Item1][kStop - 1] = res[curr.Item1][kStop] + pointCost.Item2;
+                            heap.Push((pointCost.Item1, kStop - 1, res[pointCost.Item1][kStop]));
                         }
                     }
                 }
             }
-            var max = res[dst];
-            if (max == int.MaxValue) return -1;
-            return max;
+            var list = res[dst];
+            if (list.Length == 0) return -1;
+
+            int result = list[0];
+            for (int i = 1; i < list.Length; i++)
+            {
+                if (result > list[i])
+                    result = list[i];
+            }
+            if (result == int.MaxValue) return -1;
+            return result;
         }
     }
 }
