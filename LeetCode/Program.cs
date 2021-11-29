@@ -142,7 +142,6 @@ namespace LeetCode
             Console.WriteLine("Hello World!");
         }
         
-
         public int SubArray(int[] nums, int s)
         {
             int count = 0;
