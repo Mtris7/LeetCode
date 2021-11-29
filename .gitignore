@@ -14,12 +14,7 @@ lesson11_2Pointer/lesson11_2Pointer/obj
 lesson11_2Pointer/lesson11_2Pointer/bin
 lesson9_BST/lesson9_BST/obj
 lesson9_BST/lesson9_BST/bin
-lesson3_Sorting_Queue_Stack/bin
-lesson3_Sorting_Queue_Stack/obj
 lesson9_BST/.vs
-lesson3_Sorting_Queue_Stack/.vs
-Lesson1_Array_LinkedList_BitManipulation/obj
-Lesson1_Array_LinkedList_BitManipulation/.vs/LeetCode/v16/.suo
 
 lesson13_Dijkstra/.vs/lesson13_Dijkstra/v16
 
@@ -32,3 +27,6 @@ Lesson8_BFS/.vs
 Lesson5_Hash/.vs
 Lesson5_Hash/Lesson5/obj
 Lesson5_Hash/Lesson5/bin
+LeetCode/obj
+LeetCode/bin
+.vs/LeetCode/v16/.suo
