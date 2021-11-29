@@ -100,6 +100,32 @@ namespace LeetCode
 
             Console.WriteLine("Hello World!");
         }
+
+        public bool CheckSubarraySum(int[] nums, int k)
+        {
+            if (nums.Length < 2) return false;
+            nums = PrefixSum(nums);
+            var dic = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                var temp = nums[i] % k;
+                if ((dic.ContainsKey(temp) && (i - dic[temp] > 1)) || (temp == 0 && i > 0))
+                    return true;
+                if (!dic.ContainsKey(temp))
+                    dic.Add(temp, i);
+            }
+            return false;
+        }
+        private int[] PrefixSum(int[] nums)
+        {
+            for (int i = 1; i < nums.Length; i++)
+            {
+                nums[i] += nums[i - 1];
+            }
+            return nums;
+        }
+
+
         //search-insert-position
         public int SearchInsert(int[] nums, int target)
         {
