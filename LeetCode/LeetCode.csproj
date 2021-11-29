@@ -5,9 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Lesson13\Dijkstra\" />
-    <Folder Include="Lesson14\" />
-  </ItemGroup>
-
 </Project>

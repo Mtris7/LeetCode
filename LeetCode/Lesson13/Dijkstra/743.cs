@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace lesson13_Dijkstra
+namespace LeetCode
 {
     public class _743
     {
