@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCode.Array
+namespace LeetCode
 {
-    class _905
+    class _283
     {
-        //sort-array-by-parity
-        public int[] SortArrayByParity(int[] nums)
+        //move-zeroes
+        public void MoveZeroes(int[] nums)
         {
             for (int i = 0; i < nums.Length; i++)
             {
-                if (nums[i] % 2 != 0)
+                if (nums[i] == 0)
                 {
-                    for (int j = nums.Length - 1; j > i; j--)
+                    for (int j = i + 1; j < nums.Length; j++)
                     {
-                        if (nums[j] % 2 == 0)
+                        if (nums[j] != 0)
                         {
                             int temp = nums[i];
                             nums[i] = nums[j];
@@ -25,7 +25,6 @@ namespace LeetCode.Array
                     }
                 }
             }
-            return nums;
         }
     }
 }

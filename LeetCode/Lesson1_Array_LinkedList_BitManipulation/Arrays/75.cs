@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCode.Array
+namespace LeetCode
 {
     class _75
     {

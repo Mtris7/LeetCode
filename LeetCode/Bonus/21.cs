@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCode_L3
+namespace LeetCode
 {
     public class _21
     {
-        public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
+        public ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {
             if (l1 == null) return l2;
             if (l2 == null) return l1;
