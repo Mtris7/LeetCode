@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace lesson9_BST
+namespace LeetCode
 {
     public class _230
     {
