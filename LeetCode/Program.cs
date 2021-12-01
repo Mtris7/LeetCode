@@ -92,6 +92,14 @@ namespace LeetCode
             //1748  https://leetcode.com/problems/sum-of-unique-elements/
             #endregion
 
+            #region Lesson9
+
+            //BST
+            //701   https://leetcode.com/problems/insert-into-a-binary-search-tree/
+            //700   https://leetcode.com/problems/search-in-a-binary-search-tree/
+            //450   https://leetcode.com/problems/delete-node-in-a-bst/
+            #endregion
+
             #region Lesson11
             //2Pointer
             //845   https://leetcode.com/problems/longest-mountain-in-array/
@@ -177,6 +185,14 @@ namespace LeetCode
             #endregion
 
 
+            #region
+            #endregion
+
+            #region
+            #endregion
+
+            #region
+            #endregion
             Console.WriteLine("Hello World!");
         }
         
