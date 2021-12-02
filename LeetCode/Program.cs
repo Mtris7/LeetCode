@@ -129,6 +129,18 @@ namespace LeetCode
             #endregion
 
             #region Lesson9
+            //Binary Search
+
+            //sub   https://leetcode.com/problems/search-in-a-sorted-array-of
+            //852   https://leetcode.com/problems/peak-index-in-a-mountain-array/
+            //33    https://leetcode.com/problems/search-in-rotated-sorted-array/
+            //153   https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+            //81    https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+            //69    https://leetcode.com/problems/sqrtx/
+            //sub   https://leetcode.com/problems/path-with-maximum-minimum-value/
+            //1760  https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/
+            //1631  https://leetcode.com/problems/path-with-minimum-effort/
+            //sub   https://leetcode.com/problems/divide-chocolate/
 
             //BST
             //701   https://leetcode.com/problems/insert-into-a-binary-search-tree/
