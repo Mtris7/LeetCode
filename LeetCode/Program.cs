@@ -92,6 +92,27 @@ namespace LeetCode
             //1748  https://leetcode.com/problems/sum-of-unique-elements/
             #endregion
 
+            #region Lesson7 DFS Graph
+            //Sub   https://leetcode.com/.../number-of-connected-components.../
+            //547   https://leetcode.com/problems/number-of-provinces/
+            //841   https://leetcode.com/problems/keys-and-rooms/
+            //200   https://leetcode.com/problems/number-of-islands/
+            //695   https://leetcode.com/problems/max-area-of-island/
+            //404   https://leetcode.com/problems/sum-of-left-leaves/
+            //111   https://leetcode.com/problems/minimum-depth-of-binary-tree/
+            //104   https://leetcode.com/problems/maximum-depth-of-binary-tree/
+            //543   https://leetcode.com/problems/diameter-of-binary-tree/ 
+            //508   https://leetcode.com/problems/most-frequent-subtree-sum/ unfinish
+            //Sub   https://leetcode.com/problems/diameter-of-n-ary-tree/
+            //687   https://leetcode.com/problems/longest-univalue-path/
+            //1372  https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/
+            //337   https://leetcode.com/problems/house-robber-iii/
+            //144   https://leetcode.com/problems/binary-tree-preorder-traversal/
+            //94    https://leetcode.com/problems/binary-tree-inorder-traversal/
+            //145   https://leetcode.com/problems/binary-tree-postorder-traversal/
+            //590   https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+            #endregion
+
             #region Lesson 8
             //https://leetcode.com/problems/number-of-islands (thực hiện sử dụng BFS)
             //https://leetcode.com/problems/number-of-provinces/ (thực hiện sử dụng BFS)
@@ -200,6 +221,10 @@ namespace LeetCode
             #endregion
 
 
+
+
+            #region
+            #endregion
 
             #region
             #endregion
