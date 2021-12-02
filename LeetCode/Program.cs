@@ -92,6 +92,21 @@ namespace LeetCode
             //1748  https://leetcode.com/problems/sum-of-unique-elements/
             #endregion
 
+            #region Lesson 8
+            //https://leetcode.com/problems/number-of-islands (thực hiện sử dụng BFS)
+            //https://leetcode.com/problems/number-of-provinces/ (thực hiện sử dụng BFS)
+            //429   https://leetcode.com/problems/n-ary-tree-level-order-traversal/
+            //107   https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
+            //1302  https://leetcode.com/problems/deepest-leaves-sum/
+            //199   https://leetcode.com/problems/binary-tree-right-side-view/
+            //1091  https://leetcode.com/problems/shortest-path-in-binary-matrix/
+            //sub   https://leetcode.com/problems/minimum-knight-moves/
+            //127   https://leetcode.com/problems/word-ladder/
+            //433   https://leetcode.com/problems/minimum-genetic-mutation/
+            //1293  https://leetcode.com/.../shortest-path-in-a-grid-with.../ unfinish
+            //773   https://leetcode.com/problems/sliding-puzzle/
+            #endregion
+
             #region Lesson9
 
             //BST
@@ -185,8 +200,6 @@ namespace LeetCode
             #endregion
 
 
-            #region
-            #endregion
 
             #region
             #endregion
