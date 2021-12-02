@@ -232,9 +232,6 @@ namespace LeetCode
             //                                        new int[] {3,7}, new int[] { 12,6 }});
             #endregion
 
-
-
-
             #region
             #endregion
 
@@ -245,6 +242,7 @@ namespace LeetCode
             #endregion
             Console.WriteLine("Hello World!");
         }
+
         
         public int SubArray(int[] nums, int s)
         {
