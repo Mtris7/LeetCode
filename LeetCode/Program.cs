@@ -239,7 +239,10 @@ namespace LeetCode
             #region
             #endregion
 
-            #region
+            #region Lesson 15-16
+            //https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/
+            //https://leetcode.com/problems/connecting-cities-with-minimum-cost
+            //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
             Console.WriteLine("Hello World!");
         }
