@@ -239,10 +239,10 @@ namespace LeetCode
 
             #region
             #endregion
-            
+
             //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };
             //Array.Sort(a, (c1,c2)=>c1[2].CompareTo(c2[2]));
-
+            MinimumCost(3, new int[][] { new int[] { 1, 2, 5 }, new int[] { 2, 3, 1 }, new int[] { 1, 3, 6 }});
             #region Lesson 15-16
             //https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/
             //https://leetcode.com/problems/connecting-cities-with-minimum-cost
@@ -251,7 +251,55 @@ namespace LeetCode
             Console.WriteLine("Hello World!");
         }
 
-        
+        static int[] parent;
+        static int[] rank;
+        public static int MinimumCost(int n, int[][] connections)
+        {
+            parent = new int[n + 1];
+            rank = new int[n + 1];
+            for (int i = 0; i <= n; i++)
+                parent[i] = i;
+
+            Array.Sort(connections, (a, b) => a[2].CompareTo(b[2]));
+
+            int result = 0;
+            foreach (var connection in connections)
+            {
+                if (Find(connection[0]) != Find(connection[1]))
+                {
+                    result += connection[2];
+                    union(connection[0], connection[1]);
+                }
+            }
+            for (int i = 2; i <= n; i++)
+                if (Find(i) != Find(1))
+                    return -1;
+            return result;
+
+        }
+        static int Find(int x)
+        {
+            if (parent[x] == x)
+                return x;
+            else
+                return parent[x] = Find(parent[x]);
+        }
+        static void union(int x, int y)
+        {
+            int px = Find(x);
+            int py = Find(y);
+            if (px != py)
+            {
+                if (rank[px] > rank[py])
+                    parent[py] = px;
+                else
+                {
+                    parent[px] = py;
+                    if (rank[px] == rank[py])
+                        rank[py]++;
+                }
+            }
+        }
         public int SubArray(int[] nums, int s)
         {
             int count = 0;
