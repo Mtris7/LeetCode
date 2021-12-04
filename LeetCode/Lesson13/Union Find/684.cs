@@ -44,7 +44,7 @@ namespace LeetCode.Lesson13.Union_Find
                 {
                     parent[px] = py;
                     if (rank[px] == rank[py])
-                        rank[px]++;
+                        rank[py]++;
                 }
             }
         }

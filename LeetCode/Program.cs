@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LeetCode
 {
@@ -238,6 +239,9 @@ namespace LeetCode
 
             #region
             #endregion
+            
+            //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };
+            //Array.Sort(a, (c1,c2)=>c1[2].CompareTo(c2[2]));
 
             #region Lesson 15-16
             //https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/

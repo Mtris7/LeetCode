@@ -92,7 +92,7 @@ namespace LeetCode
                 {
                     parent[px] = py;
                     if (rank[px] == rank[py])
-                        rank[px]++;
+                        rank[py]++;
                 }
             }
         }
