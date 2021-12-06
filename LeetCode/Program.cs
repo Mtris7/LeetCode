@@ -248,7 +248,7 @@ namespace LeetCode
             //bool param_5 = obj.Search("app");
             //_720 obj = new _720();
             //obj.LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
-            LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
+            //LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
             //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };
             //Array.Sort(a, (c1,c2)=>c1[2].CompareTo(c2[2]));
             //MinimumCost(3, new int[][] { new int[] { 1, 2, 5 }, new int[] { 2, 3, 1 }, new int[] { 1, 3, 6 }});
