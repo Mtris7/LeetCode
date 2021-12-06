@@ -239,10 +239,19 @@ namespace LeetCode
 
             #region
             #endregion
-
+            //_208 obj = new _208();
+            //obj.Insert("apple");
+            //bool param_2 = obj.Search("apple");
+            //bool param_3 = obj.Search("app");
+            //bool param_4 = obj.StartsWith("app");
+            //obj.Insert("app");
+            //bool param_5 = obj.Search("app");
+            //_720 obj = new _720();
+            //obj.LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
+            LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
             //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };
             //Array.Sort(a, (c1,c2)=>c1[2].CompareTo(c2[2]));
-            MinimumCost(3, new int[][] { new int[] { 1, 2, 5 }, new int[] { 2, 3, 1 }, new int[] { 1, 3, 6 }});
+            //MinimumCost(3, new int[][] { new int[] { 1, 2, 5 }, new int[] { 2, 3, 1 }, new int[] { 1, 3, 6 }});
             #region Lesson 15-16
             //https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/
             //https://leetcode.com/problems/connecting-cities-with-minimum-cost
@@ -250,7 +259,7 @@ namespace LeetCode
             #endregion
             Console.WriteLine("Hello World!");
         }
-
+        
         static int[] parent;
         static int[] rank;
         public static int MinimumCost(int n, int[][] connections)
