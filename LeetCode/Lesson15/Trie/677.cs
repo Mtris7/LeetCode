@@ -6,6 +6,7 @@ namespace LeetCode.Lesson15.Trie
 {
     class _677
     {
+        //https://leetcode.com/problems/map-sum-pairs/
         TrieNode root;
         public _677()
         {

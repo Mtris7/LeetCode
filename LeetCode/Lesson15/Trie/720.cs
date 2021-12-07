@@ -7,6 +7,7 @@ namespace LeetCode
 {
     public class _720
     {
+        //https://leetcode.com/problems/longest-word-in-dictionary/
         public string LongestWord(string[] words)
         {
             var root = new TrieNode();
@@ -42,7 +43,7 @@ namespace LeetCode
                         queue.Enqueue(trieNode.Nodes[i]);
                         if (result.Length == trieNode.Nodes[i].word.Length)
                         {
-                            int comparison = String.Compare(result, trieNode.Nodes[i].word, comparisonType: StringComparison.OrdinalIgnoreCase);
+                            int comparison = String.Compare(result, trieNode.Nodes[i].word);
                             if (comparison > 0)
                                 result = trieNode.Nodes[i].word;
 
