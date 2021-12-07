@@ -75,17 +75,6 @@ namespace LeetCode
         }
 
     }
-    public class TrieNode
-    {
-        public bool isword;
-        public TrieNode[] Nodes;
-        public string word = "";
-        public TrieNode()
-        {
-            isword = false;
-            Nodes = new TrieNode[26];
-        }
-    }
 
     
 }

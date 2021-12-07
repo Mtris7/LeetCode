@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace LeetCode.Lesson15
+namespace LeetCode
 {
     public class _208
     {
@@ -19,11 +19,11 @@ namespace LeetCode.Lesson15
             for (int i = 0; i < n; i++)
             {
                 var index = word[i] - 'a';
-                if (cur.nodes[index] == null)
+                if (cur.Nodes[index] == null)
                 {
-                    cur.nodes[index] = new TrieNode();
+                    cur.Nodes[index] = new TrieNode();
                 }
-                cur = cur.nodes[index];
+                cur = cur.Nodes[index];
                 if (i == n - 1)
                     cur.isword = true;
             }
@@ -36,9 +36,9 @@ namespace LeetCode.Lesson15
             for (int i = 0; i < n; i++)
             {
                 var index = word[i] - 'a';
-                if (cur.nodes[index] == null)
+                if (cur.Nodes[index] == null)
                     return false;
-                cur = cur.nodes[index];
+                cur = cur.Nodes[index];
             }
             return cur.isword;
         }
@@ -50,23 +50,11 @@ namespace LeetCode.Lesson15
             for (int i = 0; i < n; i++)
             {
                 var index = prefix[i] - 'a';
-                if (cur.nodes[index] == null)
+                if (cur.Nodes[index] == null)
                     return false;
-                cur = cur.nodes[index];
+                cur = cur.Nodes[index];
             }
             return true;
-        }
-    }
-    public class TrieNode
-    {
-
-        public bool isword;
-        public TrieNode[] nodes;
-
-        public TrieNode()
-        {
-            nodes = new TrieNode[26];
-            isword = false;
         }
     }
 }

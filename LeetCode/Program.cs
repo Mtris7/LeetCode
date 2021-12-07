@@ -239,8 +239,8 @@ namespace LeetCode
 
             #region
             #endregion
-            //_208 obj = new _208();
-            //obj.Insert("apple");
+            //_1268 obj = new _1268();
+            //obj.SuggestedProducts(new string[] { "mobile","mouse","moneypot","monitor","mousepad" }, "mouse");
             //bool param_2 = obj.Search("apple");
             //bool param_3 = obj.Search("app");
             //bool param_4 = obj.StartsWith("app");
