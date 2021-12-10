@@ -247,6 +247,15 @@ namespace LeetCode
             //obj.Insert("app");
             //bool param_5 = obj.Search("app");
             //_720 obj = new _720();
+            AutocompleteSystem obj = new AutocompleteSystem(new string[] { "i love you", "island", "iroman", "i love leetcode"},new int[] { 5, 3, 2, 2});
+            var a=  obj.Input('i');
+            a = obj.Input(' ');
+            a = obj.Input('a');
+            a = obj.Input('#'); 
+            a = obj.Input('i');
+            a = obj.Input(' ');
+            a = obj.Input('l');
+
             //obj.LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
             //LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
             //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };

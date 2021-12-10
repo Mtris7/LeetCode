@@ -11,11 +11,15 @@ namespace LeetCode
         public List<string> list;
         public string word = "";
         public SortedSet<string> sortedSet;
+        public Dictionary<int, SortedSet<string>> dic;
+        public int Hot;
         public TrieNode()
         {
-            Nodes = new TrieNode[26];
+            Nodes = new TrieNode[27];
             list = new List<string>();
             sortedSet = new SortedSet<string>();
+            dic = new Dictionary<int, SortedSet<string>>();
+            Hot = 0;
         }
     }
 }
