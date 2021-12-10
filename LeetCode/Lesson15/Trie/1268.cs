@@ -22,8 +22,7 @@ namespace LeetCode
                         cur.Nodes[index] = new TrieNode();
 
                     cur = cur.Nodes[index];
-                    cur.list.Add(product);
-                    cur.list.Sort();
+                    cur.sortedSet.Add(product);
                 }
             }
             var current = trie;
@@ -33,9 +32,14 @@ namespace LeetCode
                 var res = new List<string>();
                 if (current.Nodes[index] != null)
                 {
-                    int n = current.Nodes[index].list.Count > 3 ? 3 : current.Nodes[index].list.Count;
-                    for (int j = 0; j < n; j++)
-                        res.Add(current.Nodes[index].list[j]);
+                    int n = current.Nodes[index].sortedSet.Count > 3 ? 3 : current.Nodes[index].sortedSet.Count;
+                    int count = 0;
+                    foreach (var item in current.Nodes[index].sortedSet)
+                    {
+                        if (count < n)
+                            res.Add(item);
+                        count++;
+                    }
                 }
                 current = current.Nodes[index];
                 result.Add(res);
