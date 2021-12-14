@@ -239,33 +239,15 @@ namespace LeetCode
 
             #region
             #endregion
-            //_1268 obj = new _1268();
-            //obj.SuggestedProducts(new string[] { "mobile","mouse","moneypot","monitor","mousepad" }, "mouse");
-            //bool param_2 = obj.Search("apple");
-            //bool param_3 = obj.Search("app");
-            //bool param_4 = obj.StartsWith("app");
-            //obj.Insert("app");
-            //bool param_5 = obj.Search("app");
-            //_720 obj = new _720();
-            AutocompleteSystem obj = new AutocompleteSystem(new string[] { "i love you", "island", "iroman", "i love leetcode"},new int[] { 5, 3, 2, 2});
-            var a=  obj.Input('i');
-            a = obj.Input(' ');
-            a = obj.Input('a');
-            a = obj.Input('#'); 
-            a = obj.Input('i');
-            a = obj.Input(' ');
-            a = obj.Input('l');
 
-            //obj.LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
-            //LongestWord(new string[] { "a", "banana", "app", "appl", "ap", "apply", "apple" });
-            //int[][] a = new int[3][] { new int[] { 1, 2, 3 }, new int[] { 2, 3 ,7}, new int[] { 1, 3 ,5} };
-            //Array.Sort(a, (c1,c2)=>c1[2].CompareTo(c2[2]));
-            //MinimumCost(3, new int[][] { new int[] { 1, 2, 5 }, new int[] { 2, 3, 1 }, new int[] { 1, 3, 6 }});
             #region Lesson 15-16
             //https://leetcode.com/problems/minimum-cost-to-reach-city-with-discounts/
             //https://leetcode.com/problems/connecting-cities-with-minimum-cost
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
+
+            _273 obj = new _273();
+            obj.NumberToWords(12345);
             Console.WriteLine("Hello World!");
         }
         
