@@ -245,9 +245,6 @@ namespace LeetCode
             //https://leetcode.com/problems/connecting-cities-with-minimum-cost
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
-
-            _273 obj = new _273();
-            obj.NumberToWords(12345);
             Console.WriteLine("Hello World!");
         }
         
