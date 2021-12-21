@@ -248,23 +248,13 @@ namespace LeetCode
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
 
-            string Salt = "f1nd1ngn3m0";
-            string Pepper = "minhtrI3007";
-            Console.Write("Enter a password: ");
-            string password = Console.ReadLine();
-            string pass = Pepper + password + Salt;
-            var hashPass = "";
-            using (var md5Hash = MD5.Create())
-            {
-                // Byte array representation of source string
-                var sourceBytes = Encoding.UTF8.GetBytes(pass);
-
-                // Generate hash value(Byte Array) for input data
-                var hashBytes = md5Hash.ComputeHash(sourceBytes);
-
-                // Convert hash byte array to string
-                hashPass = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
-            }
+            _463 obj = new _463();
+            var grid = new int[4][];
+            grid[0] = new int[] { 0, 1, 0, 0 };
+            grid[1] = new int[] { 1, 1, 1, 0 };
+            grid[2] = new int[] { 0, 1, 0, 0 };
+            grid[3] = new int[] { 1, 1, 0, 0 };
+            obj.IslandPerimeter(grid);
 
 
             // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
