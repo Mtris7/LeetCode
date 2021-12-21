@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace LeetCode
 {
@@ -245,6 +247,43 @@ namespace LeetCode
             //https://leetcode.com/problems/connecting-cities-with-minimum-cost
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
+
+            string Salt = "f1nd1ngn3m0";
+            string Pepper = "minhtrI3007";
+            Console.Write("Enter a password: ");
+            string password = Console.ReadLine();
+            string pass = Pepper + password + Salt;
+            var hashPass = "";
+            using (var md5Hash = MD5.Create())
+            {
+                // Byte array representation of source string
+                var sourceBytes = Encoding.UTF8.GetBytes(pass);
+
+                // Generate hash value(Byte Array) for input data
+                var hashBytes = md5Hash.ComputeHash(sourceBytes);
+
+                // Convert hash byte array to string
+                hashPass = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+            }
+
+
+            // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
+            //byte[] salt = new byte[128 / 8];
+            //using (var rngCsp = new RNGCryptoServiceProvider())
+            //{
+            //    rngCsp.GetNonZeroBytes(salt);
+            //}
+            //Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+
+            //// derive a 256-bit subkey (use HMACSHA256 with 100,000 iterations)
+            //string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+            //    password: password,
+            //    salt: salt,
+            //    prf: KeyDerivationPrf.HMACSHA256,
+            //    iterationCount: 100000,
+            //    numBytesRequested: 256 / 8));
+            //Console.WriteLine($"Hashed: {hashed}");
+
             Console.WriteLine("Hello World!");
         }
         
