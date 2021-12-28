@@ -8,13 +8,18 @@ namespace LeetCode
     {
         public string AddBinary(string a, string b)
         {
+            string aR = "";
+            string bR = "";
+            for (int i = a.Length - 1; i >= 0; i--)
+                aR += a[i];
+            for (int i = b.Length - 1; i >= 0; i--)
+                bR += b[i];
             int size = a.Length < b.Length ? a.Length : b.Length;
-            int temp = 0;
             string res = "";
-            int i = size - 1;
-            for (; i >= 0; i--)
+            int temp = 0;
+            for (int i = 0; i < size; i++)
             {
-                if (a[i] == '1' && b[i] == '1')
+                if (aR[i] == '1' && bR[i] == '1')
                 {
                     if (temp == 0)
                         res = "0" + res;
@@ -22,7 +27,7 @@ namespace LeetCode
                         res = "1" + res;
                     temp = 1;
                 }
-                else if (a[i] == '0' && b[i] == '0')
+                else if (aR[i] == '0' && bR[i] == '0')
                 {
                     if (temp == 0)
                         res = "0" + res;
@@ -31,26 +36,25 @@ namespace LeetCode
                     temp = 0;
                 }
                 else
-                { //a or b = 1
+                {
+                    //a = 1 || b = 1
                     if (temp == 0)
                         res = "1" + res;
                     else
                         res = "0" + res;
-                    temp = 0;
                 }
 
             }
             if (a.Length < b.Length)
             {
-                i = b.Length - 1;
-                for (; i > size - 1; i--)
+                for (int i = b.Length - size - 1; i >= 0; i--)
                 {
                     if (b[i] == '1')
                     {
-                        if (temp == 1)
-                            res = "0" + res;
-                        else
+                        if (temp == 0)
                             res = "1" + res;
+                        else
+                            res = "0" + res;
                     }
                     else
                     {
@@ -66,15 +70,14 @@ namespace LeetCode
             }
             else
             {
-                i = a.Length - 1;
-                for (; i > size - 1; i--)
+                for (int i = a.Length - size - 1; i >= 0; i--)
                 {
                     if (a[i] == '1')
                     {
-                        if (temp == 1)
-                            res = "0" + res;
-                        else
+                        if (temp == 0)
                             res = "1" + res;
+                        else
+                            res = "0" + res;
                     }
                     else
                     {

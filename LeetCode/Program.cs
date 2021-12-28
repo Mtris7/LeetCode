@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace LeetCode
 {
@@ -248,14 +246,8 @@ namespace LeetCode
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
 
-            _463 obj = new _463();
-            var grid = new int[4][];
-            grid[0] = new int[] { 0, 1, 0, 0 };
-            grid[1] = new int[] { 1, 1, 1, 0 };
-            grid[2] = new int[] { 0, 1, 0, 0 };
-            grid[3] = new int[] { 1, 1, 0, 0 };
-            obj.IslandPerimeter(grid);
-
+            _108 obj = new _108();
+            obj.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
 
             // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
             //byte[] salt = new byte[128 / 8];
@@ -273,10 +265,81 @@ namespace LeetCode
             //    iterationCount: 100000,
             //    numBytesRequested: 256 / 8));
             //Console.WriteLine($"Hashed: {hashed}");
+            Cal(new string[] { "5","2","C","D", "+" });
+
 
             Console.WriteLine("Hello World!");
         }
-        
+        public static int Cal(string[] ops)
+        {
+            var queue = new Stack<int>();
+            for(int i = 0; i< ops.Length; i++)
+            {
+                if (ops[i] == "C")
+                {
+                    queue.Pop();
+                }
+                else if (ops[i] == "D")
+                {
+                    var node = queue.Pop();
+                    queue.Push(node);
+                    queue.Push(node * 2);
+                }
+                else if (ops[i] == "+")
+                {
+                    var node1 = queue.Pop();
+                    var node2 = queue.Pop();
+                    queue.Push(node2);
+                    queue.Push(node1);
+                    queue.Push(node2 + node1);
+
+                }
+                else
+                    queue.Push(Convert.ToInt32(ops[i]));
+            }
+            int sum = 0;
+            while(queue.Any())
+            {
+                var node = queue.Pop();
+                sum += node;
+            }
+            return sum;
+        }
+        public static string ReverseOnlyLetters(string s)
+        {
+            string res = "";
+            var dic = new Dictionary<int, char>();
+            for(int i = 0; i<s.Length;i++)
+            {
+                if(Convert.ToInt32( s[i]) <65 && Convert.ToInt32(s[i]) > 90 && Convert.ToInt32(s[i]) <97
+                   && Convert.ToInt32(s[i]) > 122)
+                {
+                    dic.Add(i, s[i]);
+                }
+                else
+                {
+                    res += s[i];
+                }
+            }
+            var str = "";
+            for(int i = res.Length - 1;i >= 0; i--)
+            {
+                str += res[i];
+            }
+            string result = "";
+            for(int i = 0; i < s.Length; i++)
+            {
+                if(dic.ContainsKey(i))
+                {
+                    result += dic[i];
+                }
+                else
+                {
+                    result += res[i];
+                }
+            }
+            return result;
+        }
         static int[] parent;
         static int[] rank;
         public static int MinimumCost(int n, int[][] connections)
