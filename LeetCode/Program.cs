@@ -246,9 +246,6 @@ namespace LeetCode
             //https://leetcode.com/problems/optimize-water-distribution-in-a-village
             #endregion
 
-            _108 obj = new _108();
-            obj.SortedArrayToBST(new int[] { -10, -3, 0, 5, 9 });
-
             // generate a 128-bit salt using a cryptographically strong random sequence of nonzero values
             //byte[] salt = new byte[128 / 8];
             //using (var rngCsp = new RNGCryptoServiceProvider())
