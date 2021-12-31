@@ -262,8 +262,6 @@ namespace LeetCode
             //    iterationCount: 100000,
             //    numBytesRequested: 256 / 8));
             //Console.WriteLine($"Hashed: {hashed}");
-            Cal(new string[] { "5","2","C","D", "+" });
-
 
             Console.WriteLine("Hello World!");
         }
