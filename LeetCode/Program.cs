@@ -262,8 +262,6 @@ namespace LeetCode
             //    iterationCount: 100000,
             //    numBytesRequested: 256 / 8));
             //Console.WriteLine($"Hashed: {hashed}");
-            _190 obj = new _190();
-            obj.reverseBits(43261596);
             Console.WriteLine("Hello World!");
         }
         public static int Cal(string[] ops)
