@@ -1,0 +1,4 @@
+﻿The Open/closed Principle says "A software module/class is open for extension and closed for modification".
+open :
+we need to design our module/class in such a way that the new functionality can be added only when new requirements are generated.
+Closed : means we have already developed a class and it has gone through unit testing. We should then not alter it until we find bugs.
