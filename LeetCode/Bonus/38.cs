@@ -8,6 +8,10 @@ namespace LeetCode.Bonus
     {
         public string CountAndSay(int n)
         {
+            //i will use DFS  for this problem and analyze result n - 1
+            // if value index i : result[i] equal value index i + 1 : result[i+1] => count ++
+            ///if index i != index i + 1 . i will update result  = count + value index
+
             if (n == 1) return "1";
 
             var count = 1;
@@ -17,7 +21,7 @@ namespace LeetCode.Bonus
 
             int i = 0;
             int j = 1;
-            while (i < j && j < str.Length)
+            while (j < str.Length)
             {
                 if (str[i] == str[j])
                 {
