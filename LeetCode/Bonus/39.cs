@@ -6,6 +6,15 @@ namespace LeetCode.Bonus
 {
     class _39
     {
+        /*first , i will sort this array
+         after that, i will use DFS for this problem , from 0 to n index in array
+        for example : 2,3,6,7  target = 7
+        sort array => 2,3,6,7 
+        first we start index equal 2, we find all case with this index and update target = target - array[index]
+        if target equal 0 , update result
+        if target bigger 0 
+        call DFS from index start to n
+        */
         public IList<IList<int>> CombinationSum(int[] candidates, int target)
         {
             var res = new List<IList<int>>();
