@@ -1,0 +1,62 @@
+﻿1.What is database index? How is it implemented under the hood?
+database index is a structure to improve query in database
+
+2.Why don’t we index every columns to support fast read?
+because when we update , insert ,delete in database, index also update and it's make a lot of time =>> decrease performance
+
+3.How does Hash Indexes work? What is its disadvantages?
+hash indexes use hashing and building a hash table to find data
+with key is a hash code of the index columns and value pointer to corresponding row
+
+Disadvantages : hash index only usefull for exactly look up, cannot support range , condition like = ,< , >
+
+4.Compare B+Tree and B-Tree
+B+ Tree								|		B- Tree
+only left node have a pointer		| all node have
+all key have a left node, so search | all key are not available in a left node, so we often take more time
+faster and accurate					|
+have duplicate key are maintained	| no dubplicate of key is maintained in the tree
+and all node are present of leaf	|
+insert easier and result always		| insert take a more time and can't	predictable
+the same							|
+									|
+									|
+									|
+									|
+5.Why use B+Tree for index, not BST/AVL/Red-Black Tree
+because B+ Tree is a self-balance , BST is not => reduce tree height
+and B+ Tree are much shorter than other balance tree like AVL, Red-Black so it can fewer disk access
+and the node in B+ Tree, have a large number of key with sort key , so we can query faster 
+
+6.What is B+Tree indexes ’s disadvantage?
+B+ Tree complex with hash index and speed low LMS- Tree index
+in equality query, hash index faster O(1) , B+ Tree O(logN)
+
+7.Given B+Tree index (C1, C2, C3), can B+Tree support query on C2?
+No
+
+8.Compare B+Tree index and Hash index?
+		B+ Tree									|				Hash index
+	save in a tree								|			save in a hash table 
+	is a faster to range query 					|			faster to exact query
+												|
+
+
+
+9.What happens to index when database machine crashes?
+DBMS use additional data structure on disk call : write ahead log ( WAL)
+append only file which every b+ tree modification must be written before it can be applied
+when database machine come back after a crash, this log is used to restore B+ tree
+
+10.What are diff between clustered index and non-clustered index.
+		clustered index								|					non-clustered index.
+the index that define order that data on disk		|	not sort
+			is faster								|	is slower
+			less memory								|	more memory for operation
+			index is the main data					|	copy data
+			only one								|	multi
+			storing data on the disk				|	not
+			defines order of data within table		|	defines order of data within index
+
+
+11.Should we index boolean column? yes

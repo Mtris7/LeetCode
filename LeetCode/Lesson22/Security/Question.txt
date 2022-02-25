@@ -1,0 +1,61 @@
+﻿1.How to store password in Database securely?
+ - plan text but avoid, if we lost database
+ - Encoding / encrypt password
+ - hash password : sha256, sha512
+ - hash + salt : 
+ - hash + salt + pepper
+ - slow hash + salt + pepper : bcrypt , scrypt
+	
+
+2.Symmetric vs Asymmetric encryption?
+Symmetric : encrypt and decrypt with secure key 
+Asymmetric : we have 2 pair of key : public key and primary key 
+message is encrypted using a public key , we only decrypted message with primary key
+message is encrypted using a primary key , we only decrypted message with public
+slow
+
+3.How RSA work?
+we have 2 pair of key : public key and primary key 
+c = encrypt(m, PK)
+
+server send c with public key (PK) and 
+m = decrypt(c, SK)
+client get message with secure key (SK) 
+
+4.How HTTPS work?
+
+5.What happen during TLS Handshake?
+
+
+6.Why use symmetric encryption for exchanging data instead of asymmetric encryption?
+because it faster 
+
+7.What is the use of client random and server random in TLS handshake?
+ pre-master secret is a function use both client random and server random 
+
+8.What is CORS?
+is a mechanism to bypass SOP (same origin policy) : define which origin can request to server origin
+
+9.How to prevent SQL injection?
+prepare statement
+
+10.How do you implement authentication?
+
+
+//validate : signature : hash(encode(header) + encode(payload) + secret key)
+
+11.How JWT work? Pros & Cons? How to revoke JWT from server?
+JWT : client send id and password
+ server validate and generate token with secret key
+ client send request with token in a header
+ server validate token with secret key and return response
+
+ Pros & Cons:
+
+
+12.2 users in diff location login with same JWT, how to warn user?
+13.Access token vs Refresh token
+Access token is a secure string that client uses to access protected resources
+refresh token is a credential that client uses to obtain new access token
+https://github.com/alex/what-happens-when
+14.Hashing vs Encoding vs Encryption? When to use each of them?
